@@ -26,13 +26,15 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
 
+        $buyer = User::where('email', $request->email)->first();
+
         $token = Auth::attempt($credentials);
 
-        if (!$token) {
+        if (!$token || $buyer->type != "buyer") {
             return response()->json([
-                'status' => 'error',
+                'status' => 500,
                 'message' => 'Unauthorized, Please check your credentials.',
-            ], 401);
+            ]);
         }
 
         $user = Auth::user();
