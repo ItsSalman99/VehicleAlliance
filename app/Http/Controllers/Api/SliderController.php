@@ -12,11 +12,21 @@ class SliderController extends Controller
     {
         $slider = ApplicationSlider::where('id', 1)->first();
 
+        if ($slider) {
+            # code...
+            return response()->json([
+                'status' => 200,
+                'img1' => $slider->img1,
+                'img2' => $slider->img2,
+                'img3' => $slider->img3
+            ]);
+        }
+
         return response()->json([
-            'status' => 200,
-            'img1' => $slider->img1,
-            'img2' => $slider->img2,
-            'img3' => $slider->img3
+            'status' => 500,
+            'img1' => '',
+            'img2' => '',
+            'img3' => ''
         ]);
 
     }

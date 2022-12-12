@@ -22,6 +22,7 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'type'
     ];
 
     /**
@@ -52,5 +53,5 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-        
+
 }

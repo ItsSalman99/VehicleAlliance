@@ -13,12 +13,12 @@ class ProfileController extends Controller
     {
         $user = User::where('id', $id)->first();
 
-        $check = Hash::check($request->password, $user->password);
+        $check = Hash::check($request->oldpassword, $user->password);
 
         if (!$check) {
             return response()->json([
-                'status' => 200,
-                'message' => 'Password doesnt matched!'
+                'status' => 500,
+                'message' => 'Password doesnt matched!',
             ]);
         }
 
@@ -30,7 +30,8 @@ class ProfileController extends Controller
 
         return response()->json([
             'status' => 200,
-            'message' => 'Profile has been updated!'
+            'message' => 'Profile has been updated!',
+            'user' => $user
         ]);
 
     }
