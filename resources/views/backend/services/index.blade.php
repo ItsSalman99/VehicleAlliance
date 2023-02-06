@@ -65,10 +65,10 @@
                                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
                                                         <div class="dropdown-content py-1">
                                                             <ul class="link-list link-list-hover-bg-primary link-list-md">
-                                                                <li><a href="edit-product.html"><em
+                                                                <li><a href="{{ route('services.edit', ['id'=>$service->id]) }}"><em
                                                                             class="icon ni ni-edit"></em><span>Edit</span></a>
                                                                 </li>
-                                                                <li><a href="edit-product.html"><em
+                                                                <li><a href="{{ route('services.delete', ['id'=>$service->id]) }}"><em
                                                                             class="icon ni ni-trash"></em><span>Delete</span></a>
                                                                 </li>
                                                                 <li><a href="products.html"><em

@@ -42,7 +42,7 @@ class EstimationController extends Controller
         ]);
 
         Estimation::create([
-            'type' => 'issue',
+            'type' => 'service',
             'min_est' => $request->minprice,
             'max_est' => $request->maxprice,
             'vehicle_id' => $request->vehicle,

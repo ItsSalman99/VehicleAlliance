@@ -299,6 +299,12 @@
                         <input type="submit" name="submit" class="input-submit" value="Sign In">
                     </div>
                 </form>
+                <hr>
+                <div class="w-full">
+                    <a href="{{ route('register') }}" class="btn btn-primary" style="width: 100%;">
+                        Become a seller
+                    </a>
+                </div>
 
             </section>
         </div>

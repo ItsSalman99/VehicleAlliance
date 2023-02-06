@@ -31,15 +31,14 @@
                                     data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
                                     aria-label="Slide 3"></button> </div>
                             <div class="carousel-inner">
-                                <div class="carousel-item active"> <img
-                                        src="<?php if($slider && $slider->img1 != null) { echo $slider->img1; } else { echo 'https://html.nioboard.themenio.com/images/slider/a.jpg'; } ?>" class="d-block w-100"
-                                        alt="..."> </div>
-                                <div class="carousel-item"> <img
-                                    src="<?php if($slider && $slider->img2 != null) { echo $slider->img2; } else { echo 'https://html.nioboard.themenio.com/images/slider/a.jpg'; } ?>" class="d-block w-100"
-                                        alt="..."> </div>
-                                <div class="carousel-item"> <img
-                                    src="<?php if($slider && $slider->img3 != null) { echo $slider->img3; } else { echo 'https://html.nioboard.themenio.com/images/slider/a.jpg'; } ?>" class="d-block w-100"
-                                        alt="..."> </div>
+                                @foreach ($slider as $slider)
+                                    <div class="carousel-item active"> <img src="<?php if ($slider && $slider->img != null) {
+                                        echo $slider->img;
+                                    } else {
+                                        echo 'https://html.nioboard.themenio.com/images/slider/a.jpg';
+                                    } ?>" class="d-block w-100"
+                                            alt="..."> </div>
+                                @endforeach
                             </div> <button class="carousel-control-prev" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="prev"> <span
                                     class="carousel-control-prev-icon" aria-hidden="true"></span> <span
@@ -50,7 +49,11 @@
                         </div>
                         <form action="{{ route('slider.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <input type="text" hidden value="<?php if($slider != null) { echo 'update'; } else { echo 'store'; } ?>" name="state">
+                            <input type="text" hidden value="<?php if ($slider != null) {
+                                echo 'update';
+                            } else {
+                                echo 'store';
+                            } ?>" name="state">
                             <div class="row g-gs">
                                 <div class="col-xxl-9">
                                     <div class="gap gy-4">
@@ -60,28 +63,10 @@
                                                     <div class="row g-gs">
                                                         <div class="col-lg-12">
                                                             <div class="form-control-wrap">
-                                                                <label for="productname"
-                                                                    class="form-label">Slider Image 1</label>
-                                                                <input class="form-control form-control-lg"
-                                                                    id="formFileLg" type="file" name="img1">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-12">
-                                                            <div class="form-control-wrap">
-                                                                <label for="productname"
-                                                                    class="form-label">Slider Image 2</label>
-                                                                <input class="form-control form-control-lg"
-                                                                    id="formFileLg" type="file" name="img2">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-12">
-                                                            <div class="form-control-wrap">
-                                                                <label for="productname"
-                                                                    class="form-label">Slider Image 3</label>
-                                                                <input class="form-control form-control-lg"
-                                                                    id="formFileLg" type="file" name="img3">
+                                                                <label for="productname" class="form-label">Slider Image
+                                                                    1</label>
+                                                                <input class="form-control form-control-lg" id="formFileLg"
+                                                                    type="file" name="imgs[]" multiple>
                                                             </div>
                                                         </div>
                                                     </div>

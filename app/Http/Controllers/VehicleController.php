@@ -49,4 +49,48 @@ class VehicleController extends Controller
         return redirect()->back();
 
     }
+
+    public function delete($id)
+    {
+
+        $vehicle = Vehicle::where('id', $id)->first();
+
+        $vehicle->delete();
+
+        Alert::success("Vehicle Estimation Details Deleted Successfully!", "Vehicle estimation details deleted successfully!");
+
+        return redirect()->back();
+
+    }
+
+    public function edit($id)
+    {
+
+        $vehicle = Vehicle::where('id', $id)->first();
+        $models = VehicleModel::get();
+
+        return view('backend.estimation.vehicles.edit', compact('vehicle', 'models'));
+
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        dd($request->all());
+
+        $vehicle = Vehicle::where('id', $id)->first();
+
+        $vehicle->name = $request->name;
+        $vehicle->price = $request->price;
+        $vehicle->engine_capacity = $request->engine_capacity;
+        $vehicle->transmission_type = $request->transmission_type;
+        $vehicle->model_id = $request->model;
+
+
+        Alert::success("Vehicle Estimation Details Deleted Successfully!", "Vehicle estimation details deleted successfully!");
+
+        return redirect()->back();
+
+    }
+
 }

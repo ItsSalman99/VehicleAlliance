@@ -15,9 +15,7 @@ class CreateApplicationSlidersTable extends Migration
     {
         Schema::create('application_sliders', function (Blueprint $table) {
             $table->id();
-            $table->string('img1')->nullable();
-            $table->string('img2')->nullable();
-            $table->string('img3')->nullable();
+            $table->string('img')->nullable();
             $table->timestamps();
         });
     }

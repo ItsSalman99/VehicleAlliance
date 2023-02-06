@@ -23,4 +23,9 @@ class Service extends Model
         'end_available_date'
     ];
 
+    public function appointments()
+    {
+        return $this->hasMany(AppointedService::class);
+    }
+
 }

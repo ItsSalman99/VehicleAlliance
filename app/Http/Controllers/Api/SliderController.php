@@ -10,23 +10,19 @@ class SliderController extends Controller
 {
     public function getAll()
     {
-        $slider = ApplicationSlider::where('id', 1)->first();
+        $slider = ApplicationSlider::all();
 
         if ($slider) {
             # code...
             return response()->json([
                 'status' => 200,
-                'img1' => $slider->img1,
-                'img2' => $slider->img2,
-                'img3' => $slider->img3
+                'data' => $slider,
             ]);
         }
 
         return response()->json([
             'status' => 500,
-            'img1' => '',
-            'img2' => '',
-            'img3' => ''
+            'data' => $slider,
         ]);
 
     }

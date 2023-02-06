@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Alert;
 
 class UserController extends Controller
 {
@@ -13,4 +14,17 @@ class UserController extends Controller
 
         return view('backend.users.index', compact('users'));
     }
+
+    public function delete($id)
+    {
+        $user = User::where('id', $id)->first();
+
+        $user->delete();
+
+        toast("User Has Been Deleted Successfully!");
+
+        return redirect()->back();
+
+    }
+
 }

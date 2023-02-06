@@ -1,7 +1,7 @@
 @extends('backend.layout.main')
 
 @section('content')
-    <div class="nk-content">
+9    <div class="nk-content">
         <div class="container">
             <div class="nk-content-inner">
                 <div class="nk-content-body">

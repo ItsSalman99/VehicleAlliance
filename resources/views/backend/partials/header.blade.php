@@ -325,7 +325,9 @@
                                             src="images/avatar/a.jpg" alt="" class="img-thumbnail">
                                     </div>
                                     <div class="media-text">
-                                        <div class="lead-text">Wesley Burland</div><span class="sub-text">Owner &
+                                        <div class="lead-text">
+                                            {{ Auth::user()->name }}
+                                        </div><span class="sub-text">Owner &
                                             Founder</span>
                                     </div>
                                 </div>

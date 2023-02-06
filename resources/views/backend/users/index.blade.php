@@ -45,31 +45,33 @@
                                                     {{ $user->email }}
                                                 </span></td>
                                             <td class="tb-col"><span class="badge text-bg-success-soft">
-                                                {{ $user->type }}
-                                            </span></td>
+                                                    {{ $user->type }}
+                                                </span></td>
                                             <td class="tb-col tb-col-md"><span>
                                                     {{ date('F j Y', strtotime($user->created_at)) }}
                                                 </span></td>
                                             <td class="tb-col tb-col-end">
-                                                <div class="dropdown"><a href="#"
-                                                        class="btn btn-sm btn-icon btn-zoom me-n1"
-                                                        data-bs-toggle="dropdown"><em class="icon ni ni-more-v"></em></a>
-                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                                        <div class="dropdown-content py-1">
-                                                            <ul class="link-list link-list-hover-bg-primary link-list-md">
-                                                                <li><a href="edit-product.html"><em
-                                                                            class="icon ni ni-edit"></em><span>Edit</span></a>
-                                                                </li>
-                                                                <li><a href="edit-product.html"><em
-                                                                            class="icon ni ni-trash"></em><span>Delete</span></a>
-                                                                </li>
-                                                                <li><a href="products.html"><em
-                                                                            class="icon ni ni-eye"></em><span>View
-                                                                            Details</span></a></li>
-                                                            </ul>
+                                                @if ($user->type != 'admin')
+                                                    <div class="dropdown"><a href="#"
+                                                            class="btn btn-sm btn-icon btn-zoom me-n1"
+                                                            data-bs-toggle="dropdown"><em
+                                                                class="icon ni ni-more-v"></em></a>
+                                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                                                            <div class="dropdown-content py-1">
+                                                                <ul
+                                                                    class="link-list link-list-hover-bg-primary link-list-md">
+                                                                    <li><a
+                                                                            href="{{ route('users.delete', ['id' => $user->id]) }}"><em
+                                                                                class="icon ni ni-trash"></em><span>Delete</span></a>
+                                                                    </li>
+                                                                    {{-- <li><a href="products.html"><em
+                                                                        class="icon ni ni-eye"></em><span>View
+                                                                            Details</span></a></li> --}}
+                                                                </ul>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
