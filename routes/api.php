@@ -10,6 +10,8 @@ use App\Http\Controllers\Api\SliderController;
 use App\Http\Controllers\Api\VehicleController;
 use App\Http\Controllers\Api\VehicleIssueController;
 use App\Http\Controllers\FuelController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\UserSubscriptionController;
 use App\Http\Controllers\VehicleModelController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -44,3 +46,6 @@ Route::get('poll/getAll', [PollController::class, 'getAll']);
 Route::post('poll/store', [PollController::class, 'store'])->name('poll.store');
 Route::get('poll/upVote/{id}', [PollController::class, 'upVote']);
 
+Route::get('notifications', [NotificationController::class, 'getAll']);
+
+Route::post('subscribe', [UserSubscriptionController::class, 'store']);

@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Api\PollController;
 use App\Http\Controllers\EstimationController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserSubscriptionController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\VehicleIssueController;
 use App\Models\Estimation;
@@ -73,5 +75,9 @@ Route::get('/product/delete/{id}', [ProductController::class, 'delete'])->name('
 Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
 Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
 
+Route::get('/all-subscriptions', [UserSubscriptionController::class,'index'])->name('subscriptions.index');
+
+
+Route::get('/all-polls', [PollController::class,'index'])->name('poll.index');
 
 require __DIR__.'/auth.php';

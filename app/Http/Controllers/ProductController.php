@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Alert;
+use App\Models\Notification;
 use App\Models\Shop;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,6 +49,11 @@ class ProductController extends Controller
         $product->shop_id = $shop->id;
 
         $product->save();
+
+        Notification::create([
+            'title' => $product->name . ' is ready to sell!',
+            'body' => 'Lets have a look'
+        ]);
 
         toast("New Product Has Been Added!");
 

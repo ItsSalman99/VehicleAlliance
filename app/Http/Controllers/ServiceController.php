@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Alert;
+use App\Models\Notification;
 use Carbon\Carbon;
 
 class ServiceController extends Controller
@@ -44,6 +45,11 @@ class ServiceController extends Controller
         $service->end_available_date = Carbon::createFromDate($request->edate);
 
         $service->save();
+
+        Notification::create([
+            'title' => $service->name . ' is available now!',
+            'body' => 'Lets Avail this service now!'
+        ]);
 
         toast("New service uploaded", "success");
 

@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 class PollController extends Controller
 {
 
+    public function index()
+    {
+        $polls = Poll::all();
+
+        return view('backend.poll.index', compact('polls'));
+
+    }
+
     public function getAll(){
 
         $polls = Poll::with('user')->get();
@@ -22,11 +30,17 @@ class PollController extends Controller
 
     public function store(Request $request)
     {
-        $poll = Poll::create([
-            'title' => $request->title,
-            'description' => $request->content,
-            'user_id' => $request->userID
-        ]);
+
+        // return response()->json([
+        //     'status' => true,
+        //     'data' => $request->all()
+        // ]);
+        $poll = new Poll();
+        $poll->title = $request->title;
+        $poll->description = $request->content;
+        $poll->user_id = (int) $request->userID;
+
+        $poll->save();
 
         if($poll)
         {

@@ -26,6 +26,38 @@
 
                     @if (Auth::user()->type == 'admin')
                         <li class="nk-menu-heading">
+                            <h6 class="overline-title">Application Settings</h6>
+                        </li>
+                        <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
+                                    class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span><span
+                                    class="nk-menu-text">Application Slider</span></a>
+                            <ul class="nk-menu-sub">
+                                <li class="nk-menu-item"><a href="{{ route('slider.create') }}"
+                                        class="nk-menu-link"><span class="nk-menu-text">Manage Slider</span></a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nk-menu-heading">
+                            <h6 class="overline-title">Users</h6>
+                        </li>
+                        <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
+                                    class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span><span
+                                    class="nk-menu-text">Users</span></a>
+                            <ul class="nk-menu-sub">
+                                <li class="nk-menu-item"><a href="{{ route('users.index') }}" class="nk-menu-link"><span
+                                            class="nk-menu-text">All Users</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
+                                    class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span><span
+                                    class="nk-menu-text">Users Subscription</span></a>
+                            <ul class="nk-menu-sub">
+                                <li class="nk-menu-item"><a href="{{ route('subscriptions.index') }}" class="nk-menu-link"><span
+                                            class="nk-menu-text">All Subscribed Users</span></a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nk-menu-heading">
                             <h6 class="overline-title">Services</h6>
                         </li>
                         <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
@@ -38,6 +70,19 @@
                                         class="nk-menu-link"><span class="nk-menu-text">Add Service</span></a></li>
                             </ul>
                         </li>
+
+                        <li class="nk-menu-heading">
+                            <h6 class="overline-title">Poll</h6>
+                        </li>
+                        <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
+                                    class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span><span
+                                    class="nk-menu-text">User Poll</span></a>
+                            <ul class="nk-menu-sub">
+                                <li class="nk-menu-item"><a href="{{ route('poll.index') }}"
+                                        class="nk-menu-link"><span class="nk-menu-text">View</span></a></li>
+                            </ul>
+                        </li>
+
                         <li class="nk-menu-heading">
                             <h6 class="overline-title">Estimation</h6>
                         </li>
@@ -70,28 +115,6 @@
                                             Estimation</span></a></li>
                             </ul>
                         </li>
-                        <li class="nk-menu-heading">
-                            <h6 class="overline-title">Users</h6>
-                        </li>
-                        <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
-                                    class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span><span
-                                    class="nk-menu-text">Users</span></a>
-                            <ul class="nk-menu-sub">
-                                <li class="nk-menu-item"><a href="{{ route('users.index') }}" class="nk-menu-link"><span
-                                            class="nk-menu-text">All Users</span></a></li>
-                            </ul>
-                        </li>
-                        <li class="nk-menu-heading">
-                            <h6 class="overline-title">Application Settings</h6>
-                        </li>
-                        <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
-                                    class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span><span
-                                    class="nk-menu-text">Application Slider</span></a>
-                            <ul class="nk-menu-sub">
-                                <li class="nk-menu-item"><a href="{{ route('slider.create') }}"
-                                        class="nk-menu-link"><span class="nk-menu-text">Manage Slider</span></a></li>
-                            </ul>
-                        </li>
                     @else
                         <li class="nk-menu-heading">
                             <h6 class="overline-title">Shop</h6>
@@ -112,7 +135,8 @@
                                     class="nk-menu-text">Products</span></a>
                             <ul class="nk-menu-sub">
                                 <li class="nk-menu-item"><a href="{{ route('product.index') }}"
-                                        class="nk-menu-link"><span class="nk-menu-text">Manage Products</span></a></li>
+                                        class="nk-menu-link"><span class="nk-menu-text">Manage Products</span></a>
+                                </li>
                             </ul>
                         </li>
                     @endif
