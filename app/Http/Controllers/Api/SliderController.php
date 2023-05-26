@@ -10,10 +10,14 @@ class SliderController extends Controller
 {
     public function getAll()
     {
-        $slider = ApplicationSlider::all();
+        $slider = ApplicationSlider::get();
+        $data = array();
 
         if ($slider) {
             # code...
+            foreach ($slider as $key => $value) {
+                array_push($data, $value->img);
+            }
             return response()->json([
                 'status' => 200,
                 'data' => $slider,

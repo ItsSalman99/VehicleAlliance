@@ -166,7 +166,6 @@ return [
          * Package Service Providers...
          */
 
-        PHPOpenSourceSaver\JWTAuth\Providers\LaravelServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
         /*

@@ -31,7 +31,8 @@
                         </div>
                     </div>
                     <div class="nk-block">
-                        <form action="{{ route('services.update', ['id' => $service->id]) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('services.update', ['id' => $service->id]) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row g-gs">
                                 <div class="col-xxl-9">
@@ -44,8 +45,9 @@
                                                             <div class="form-group"><label for="productname"
                                                                     class="form-label">Service Name</label>
                                                                 <div class="form-control-wrap">
-                                                                    <input type="text" name="name" min="100" value="{{$service->name}}"
-                                                                        class="form-control" placeholder="Service Name">
+                                                                    <input type="text" name="name" min="100"
+                                                                        value="{{ $service->name }}" class="form-control"
+                                                                        placeholder="Service Name">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -53,8 +55,9 @@
                                                             <div class="form-group"><label for="productname"
                                                                     class="form-label">Price</label>
                                                                 <div class="form-control-wrap">
-                                                                    <input type="number" name="price" min="100" value="{{$service->price}}"
-                                                                        class="form-control" placeholder="Service Price">
+                                                                    <input type="number" name="price" min="100"
+                                                                        value="{{ $service->price }}" class="form-control"
+                                                                        placeholder="Service Price">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -62,7 +65,7 @@
                                                             <div class="form-group"><label for="productname"
                                                                     class="form-label">Description</label>
                                                                 <div class="form-control-wrap">
-                                                                    <textarea name="description" class="form-control" placeholder="Service Description">{{$service->description}}</textarea>
+                                                                    <textarea name="description" class="form-control" placeholder="Service Description">{{ $service->description }}</textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -70,7 +73,8 @@
                                                             <div class="form-group"><label for="productname"
                                                                     class="form-label">Start Time</label>
                                                                 <div class="form-control-wrap">
-                                                                    <input type="time" name="stime" min="100" value="{{$service->available_stime}}"
+                                                                    <input type="time" name="stime" min="100"
+                                                                        value="{{ $service->available_stime }}"
                                                                         class="form-control" placeholder="Time">
                                                                 </div>
                                                             </div>
@@ -79,7 +83,8 @@
                                                             <div class="form-group"><label for="productname"
                                                                     class="form-label">End Time</label>
                                                                 <div class="form-control-wrap">
-                                                                    <input type="time" name="etime" min="100" value="{{$service->available_etime}}"
+                                                                    <input type="time" name="etime" min="100"
+                                                                        value="{{ $service->available_etime }}"
                                                                         class="form-control" placeholder="Time">
                                                                 </div>
                                                             </div>
@@ -88,14 +93,18 @@
                                                             <div class="form-control-wrap">
                                                                 <label for="productname"
                                                                     class="form-label">Thumbnail</label>
+                                                                <br><br>
+                                                                <img src="{{ asset($service->img) }}" width="20%"
+                                                                    height="20%" alt="">
                                                                 <input class="form-control form-control-lg" id="formFileLg"
                                                                     type="file" name="img">
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-6">
+                                                        {{-- <div class="col-lg-6">
                                                             <div class="form-group"><label for="productname"
                                                                     class="form-label">From Date</label>
-                                                                <input type="date" id="sdate" name="sdate" value="value="{{$service->start_available_date}}""
+                                                                <input type="date" id="sdate" name="sdate"
+                                                                    value="value="{{ $service->start_available_date }}""
                                                                     onclick="document.getElementById('sdate').val() = new Date();"
                                                                     class="form-control">
                                                             </div>
@@ -105,10 +114,11 @@
                                                             <div class="form-group"><label for="productname"
                                                                     class="form-label">To Date</label>
                                                                 <input type="date" name="edate" class="form-control"
-                                                                    id="edate" value="{{$service->end_available_date}}"
+                                                                    id="edate"
+                                                                    value="{{ $service->end_available_date }}"
                                                                     onclick="document.getElementById('edate').val() = new Date();">
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                 </div>
                                             </div>

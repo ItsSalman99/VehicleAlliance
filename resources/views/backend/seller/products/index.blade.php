@@ -55,7 +55,7 @@
                                                     {{ $product->id }}
                                                 </span></td>
                                             <td class="tb-col tb-col-md" style="width: 200px">
-                                                <img src="{{ $product->img }}" width="80%" height="80%" alt="">
+                                                <img src="{{ asset($product->img) }}" width="30%" height="80%" alt="">
                                             </td>
                                             <td class="tb-col tb-col-md"><span>
                                                     {{ $product->name }}

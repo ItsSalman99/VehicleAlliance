@@ -65,15 +65,20 @@
                                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
                                                         <div class="dropdown-content py-1">
                                                             <ul class="link-list link-list-hover-bg-primary link-list-md">
-                                                                <li><a href="edit-product.html"><em
+
+                                                                <li>
+                                                                    <a
+                                                                        href="{{ route('estimation.issue.delete', ['id' => $estimation->id]) }}"><em
+                                                                            class="icon ni ni-trash"></em><span>
+                                                                                Delete
+                                                                        </span></a>
+                                                                </li>
+                                                                {{-- <li><a href="edit-product.html"><em
                                                                             class="icon ni ni-edit"></em><span>Edit</span></a>
                                                                 </li>
                                                                 <li><a href="edit-product.html"><em
                                                                             class="icon ni ni-trash"></em><span>Delete</span></a>
-                                                                </li>
-                                                                <li><a href="products.html"><em
-                                                                            class="icon ni ni-eye"></em><span>View
-                                                                            Details</span></a></li>
+                                                                </li> --}}
                                                             </ul>
                                                         </div>
                                                     </div>

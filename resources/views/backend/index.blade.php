@@ -46,6 +46,23 @@
                                     <div class="card-body">
                                         <div class="card-title-group align-items-start">
                                             <div class="card-title">
+                                                <h4 class="title">Staffs</h4>
+                                            </div>
+                                            <div class="media media-middle media-circle media-sm text-bg-primary-soft">
+                                                <em class="icon icon-md ni ni-user-alt-fill"></em>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 mb-4">
+                                            <div class="amount h1">{{ $staff }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xl-6 col-xxl-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-title-group align-items-start">
+                                            <div class="card-title">
                                                 <h4 class="title">Sellers</h4>
                                             </div>
                                             <div class="media media-middle media-circle media-sm text-bg-primary-soft">
@@ -54,6 +71,40 @@
                                         </div>
                                         <div class="mt-2 mb-4">
                                             <div class="amount h1">{{ $seller }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xl-6 col-xxl-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-title-group align-items-start">
+                                            <div class="card-title">
+                                                <h4 class="title">Total Orders</h4>
+                                            </div>
+                                            <div class="media media-middle media-circle media-sm text-bg-primary-soft">
+                                                <em class="icon icon-md ni ni-user-alt-fill"></em>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 mb-4">
+                                            <div class="amount h1">{{ $orders }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xl-6 col-xxl-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-title-group align-items-start">
+                                            <div class="card-title">
+                                                <h4 class="title">Orders Earned</h4>
+                                            </div>
+                                            <div class="media media-middle media-circle media-sm text-bg-primary-soft">
+                                                <em class="icon icon-md ni ni-user-alt-fill"></em>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 mb-4">
+                                            <div class="amount h1">Rs.{{ $orderEarned }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +168,7 @@
                                                             {{ $item->id }}
                                                         </td>
                                                         <td class="tb-col tb-col-md" style="width: 200px">
-                                                            <img src="{{ $item->img }}" width="20%" height="20%"
+                                                            <img src="{{ asset($item->img) }}" width="20%" height="20%"
                                                                 alt="">
                                                         </td>
                                                         <td class="tb-col tb-col-end"><span class="small">
@@ -177,7 +228,8 @@
                                         <table class="table table-middle mb-0">
                                             <thead class="table-light table-head-sm">
                                                 <tr>
-                                                    <th class="tb-col"><span class="overline-title">Vehicle Name</span></th>
+                                                    <th class="tb-col"><span class="overline-title">Vehicle Name</span>
+                                                    </th>
                                                     <th class="tb-col tb-col-md"><span class="overline-title">Vehicle
                                                             Model</span>
                                                     </th>
@@ -289,7 +341,7 @@
                                                                     <div class="dropdown-content py-1">
                                                                         <ul
                                                                             class="link-list link-list-hover-bg-primary link-list-md">
-                                                                            <li><a href="edit-product.html"><em
+                                                                            {{-- <li><a href="edit-product.html"><em
                                                                                         class="icon ni ni-edit"></em><span>Edit</span></a>
                                                                             </li>
                                                                             <li><a href="edit-product.html"><em
@@ -297,7 +349,7 @@
                                                                             </li>
                                                                             <li><a href="products.html"><em
                                                                                         class="icon ni ni-eye"></em><span>View
-                                                                                        Details</span></a></li>
+                                                                                        Details</span></a></li> --}}
                                                                         </ul>
                                                                     </div>
                                                                 </div>

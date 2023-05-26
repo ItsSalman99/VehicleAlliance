@@ -80,7 +80,11 @@
                                                             <div class="form-group">
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        name="in_stock" id="addProductshippingCheckbox">
+                                                                        name="in_stock" id="addProductshippingCheckbox"
+                                                                        @if($product->in_stock == 1)
+                                                                            {{ 'checked' }}
+                                                                        @endif
+                                                                    >
                                                                     <label class="form-check-label"
                                                                         for="addProductshippingCheckbox">This product is in
                                                                         stock</label>

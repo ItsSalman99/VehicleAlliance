@@ -14,7 +14,6 @@ class AppointedService extends Model
         'service_id'
     ];
 
-
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -23,6 +22,11 @@ class AppointedService extends Model
     public function service()
     {
         return $this->belongsTo(Service::class);
+    }
+
+    public function staffappointment()
+    {
+        return $this->hasMany(StaffServiceAppointment::class, 'appointments_id');
     }
 
 }

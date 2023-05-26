@@ -19,5 +19,15 @@ class Product extends Model
         'shop_id'
     ];
 
+    /**
+     * Get the seller that owns the Product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function seller()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }
 

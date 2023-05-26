@@ -48,15 +48,26 @@
                                             class="nk-menu-text">All Users</span></a></li>
                             </ul>
                         </li>
-                        <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
+                        {{-- <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
                                     class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span><span
                                     class="nk-menu-text">Users Subscription</span></a>
                             <ul class="nk-menu-sub">
-                                <li class="nk-menu-item"><a href="{{ route('subscriptions.index') }}" class="nk-menu-link"><span
-                                            class="nk-menu-text">All Subscribed Users</span></a></li>
+                                <li class="nk-menu-item"><a href="{{ route('subscriptions.index') }}"
+                                        class="nk-menu-link"><span class="nk-menu-text">All Subscribed Users</span></a>
+                                </li>
+                            </ul>
+                        </li> --}}
+                        <li class="nk-menu-heading">
+                            <h6 class="overline-title">Manage Staffs</h6>
+                        </li>
+                        <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
+                                    class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span><span
+                                    class="nk-menu-text">Staffs</span></a>
+                            <ul class="nk-menu-sub">
+                                <li class="nk-menu-item"><a href="{{ route('staffs.index') }}"
+                                        class="nk-menu-link"><span class="nk-menu-text">All Staffs</span></a></li>
                             </ul>
                         </li>
-
                         <li class="nk-menu-heading">
                             <h6 class="overline-title">Services</h6>
                         </li>
@@ -70,6 +81,47 @@
                                         class="nk-menu-link"><span class="nk-menu-text">Add Service</span></a></li>
                             </ul>
                         </li>
+
+                        <li class="nk-menu-heading">
+                            <h6 class="overline-title">Services Appointments</h6>
+                        </li>
+                        <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
+                                    class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span><span
+                                    class="nk-menu-text">Services Appointments</span></a>
+                            <ul class="nk-menu-sub">
+                                <li class="nk-menu-item"><a href="{{ route('appointments.index') }}"
+                                        class="nk-menu-link"><span class="nk-menu-text">All Appointmented
+                                            Services</span></a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nk-menu-heading">
+                            <h6 class="overline-title">Orders</h6>
+                        </li>
+                        <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
+                                    class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span><span
+                                    class="nk-menu-text">Product Orders</span></a>
+                            <ul class="nk-menu-sub">
+                                <li class="nk-menu-item"><a href="{{ route('orders.index') }}"
+                                        class="nk-menu-link"><span class="nk-menu-text">
+                                            Manage Orders
+                                        </span></a></li>
+                            </ul>
+                        </li>
+
+
+                        <li class="nk-menu-heading">
+                            <h6 class="overline-title">Application Rewards</h6>
+                        </li>
+                        <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
+                                    class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span><span
+                                    class="nk-menu-text">Rewards</span></a>
+                            <ul class="nk-menu-sub">
+                                <li class="nk-menu-item"><a href="{{ route('rewards.index') }}"
+                                        class="nk-menu-link"><span class="nk-menu-text">View</span></a></li>
+                            </ul>
+                        </li>
+
 
                         <li class="nk-menu-heading">
                             <h6 class="overline-title">Poll</h6>
@@ -110,12 +162,12 @@
                                 <li class="nk-menu-item"><a href="{{ route('estimation.issue') }}"
                                         class="nk-menu-link"><span class="nk-menu-text">Vehicle Service
                                             Estimation</span></a></li>
-                                <li class="nk-menu-item"><a href="apps/kanban/kanban-basic.html"
+                                {{-- <li class="nk-menu-item"><a href="apps/kanban/kanban-basic.html"
                                         class="nk-menu-link"><span class="nk-menu-text">Vehicle Parts
-                                            Estimation</span></a></li>
+                                            Estimation</span></a></li> --}}
                             </ul>
                         </li>
-                    @else
+                    @elseif(Auth::user()->type == 'seller')
                         <li class="nk-menu-heading">
                             <h6 class="overline-title">Shop</h6>
                         </li>
@@ -136,6 +188,29 @@
                             <ul class="nk-menu-sub">
                                 <li class="nk-menu-item"><a href="{{ route('product.index') }}"
                                         class="nk-menu-link"><span class="nk-menu-text">Manage Products</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
+                                    class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span><span
+                                    class="nk-menu-text">My Orders</span></a>
+                            <ul class="nk-menu-sub">
+                                <li class="nk-menu-item"><a href="{{ route('orders.index') }}"
+                                        class="nk-menu-link"><span class="nk-menu-text">Manage Order</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    @elseif(Auth::user()->type == 'staff')
+                        <li class="nk-menu-heading">
+                            <h6 class="overline-title">My Services Appointments</h6>
+                        </li>
+                        <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
+                                    class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span><span
+                                    class="nk-menu-text">Services Appointments</span></a>
+                            <ul class="nk-menu-sub">
+                                <li class="nk-menu-item"><a href="{{ route('staff.appointments') }}"
+                                        class="nk-menu-link"><span class="nk-menu-text">Manage Services
+                                            Appointments</span></a>
                                 </li>
                             </ul>
                         </li>

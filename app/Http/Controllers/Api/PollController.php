@@ -35,18 +35,28 @@ class PollController extends Controller
         //     'status' => true,
         //     'data' => $request->all()
         // ]);
-        $poll = new Poll();
-        $poll->title = $request->title;
-        $poll->description = $request->content;
-        $poll->user_id = (int) $request->userID;
 
-        $poll->save();
+        try {
+            //code...
+            $poll = new Poll();
+            $poll->title = $request->title;
+            $poll->description = $request->content;
+            $poll->user_id = (int) $request->uid;
 
-        if($poll)
-        {
+            $poll->save();
+
+            if($poll)
+            {
+                return response()->json([
+                    'status' => true,
+                    'data' => $poll
+                ]);
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
             return response()->json([
-                'status' => true,
-                'data' => $poll
+                'status' => false,
+                'msg' => $th->getMessage()
             ]);
         }
     }

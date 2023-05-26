@@ -93,13 +93,20 @@ class ProductController extends Controller
             # code...
             $product->in_stock = 1;
         }
+        else{
+            $product->in_stock = 0;
+        }
+
         if ($request->hasFile('img')) {
 
             $filename = $request->name . '_'  . $request->img->getClientOriginalName();
 
             $request->img->move(public_path('assets/frontend/img/uploads/products/'), $filename);
+
+            $product->img = 'assets/frontend/img/uploads/products/' . $filename;
+
         }
-        $product->img = 'assets/frontend/img/uploads/products/' . $filename;
+
         // dd(Auth::user()->id);
         $product->seller_id = Auth::user()->id;
         $shop = Shop::where('seller_id', Auth::user()->id)->first();

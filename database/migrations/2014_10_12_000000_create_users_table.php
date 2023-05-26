@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('type')->nullable();
             $table->string('img', 100)->nullable();
             $table->boolean('is_sub')->nullable()->default(0);
+            $table->string('token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -31,7 +31,7 @@
                                         </th>
                                         <th class="tb-col"><span class="overline-title">Price</span></th>
                                         <th class="tb-col"><span class="overline-title">Available Time</span></th>
-                                        <th class="tb-col"><span class="overline-title">Available Date</span></th>
+                                        {{-- <th class="tb-col"><span class="overline-title">Available Date</span></th> --}}
                                         <th class="tb-col tb-col-md"><span class="overline-title">Created At</span></th>
                                         <th class="tb-col tb-col-end" data-sortable="false"><span
                                                 class="overline-title">action</span></th>
@@ -41,7 +41,7 @@
                                     @foreach ($services as $service)
                                         <tr>
                                             <td class="tb-col tb-col-md" style="width: 200px">
-                                                <img src="{{ $service->img }}" width="20%" height="20%" alt="">
+                                                <img src="{{ asset($service->img) }}" width="20%" height="20%" alt="">
                                             </td>
                                             <td class="tb-col tb-col-md"><span>
                                                     {{ $service->name }}
@@ -52,9 +52,9 @@
                                             <td class="tb-col"><span class="badge text-bg-success-soft">
                                                     {{ $service->available_stime . ' - ' . $service->available_etime }}
                                                 </span></td>
-                                            <td class="tb-col"><span class="badge text-bg-success-soft">
+                                            {{-- <td class="tb-col"><span class="badge text-bg-success-soft">
                                                     {{ $service->start_available_date . ' - ' . $service->end_available_date }}
-                                                </span></td>
+                                                </span></td> --}}
                                             <td class="tb-col tb-col-md"><span>
                                                     {{ date('F j Y', strtotime($service->created_at)) }}
                                                 </span></td>
@@ -71,9 +71,6 @@
                                                                 <li><a href="{{ route('services.delete', ['id'=>$service->id]) }}"><em
                                                                             class="icon ni ni-trash"></em><span>Delete</span></a>
                                                                 </li>
-                                                                <li><a href="products.html"><em
-                                                                            class="icon ni ni-eye"></em><span>View
-                                                                            Details</span></a></li>
                                                             </ul>
                                                         </div>
                                                     </div>

@@ -45,4 +45,37 @@ class VehicleIssueController extends Controller
 
     }
 
+    public function edit($id)
+    {
+        $issue = VehicleIssue::where('id', $id)->first();
+
+        return view('backend.estimation.vehicles.issues.edit', compact('issue'));
+
+    }
+
+    public function update(Request $request, $id)
+    {
+        $issue = VehicleIssue::where('id', $id)->first();
+
+        $issue->name = $request->name;
+        $issue->save();
+
+        Alert::success("Issue updated successfully!", "Issue updated successfully.");
+
+        return redirect()->back();
+
+    }
+
+    public function delete($id)
+    {
+
+        $issue = VehicleIssue::where('id', $id)->first();
+
+        $issue->delete();
+
+        Alert::success("Issue deleted successfully!", "Issue deleted successfully.");
+
+        return redirect()->back();
+    }
+
 }

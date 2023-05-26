@@ -76,18 +76,20 @@ class VehicleController extends Controller
     public function update(Request $request, $id)
     {
 
-        dd($request->all());
+        // dd($request->all());
 
         $vehicle = Vehicle::where('id', $id)->first();
-
+        // dd($id);
         $vehicle->name = $request->name;
         $vehicle->price = $request->price;
         $vehicle->engine_capacity = $request->engine_capacity;
         $vehicle->transmission_type = $request->transmission_type;
         $vehicle->model_id = $request->model;
 
+        $vehicle->save();
 
-        Alert::success("Vehicle Estimation Details Deleted Successfully!", "Vehicle estimation details deleted successfully!");
+
+        Alert::success("Vehicle Estimation Details Updated Successfully!", "Vehicle estimation details updated successfully!");
 
         return redirect()->back();
 

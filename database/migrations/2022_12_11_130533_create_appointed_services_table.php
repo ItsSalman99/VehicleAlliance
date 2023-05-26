@@ -19,6 +19,9 @@ class CreateAppointedServicesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('service_id')->nullable();
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
+            $table->string('date')->nullable();
+            $table->text('address')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

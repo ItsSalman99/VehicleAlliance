@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="nk-block">
-                        <form action="{{ route('vehicle.update', ['id', $vehicle->id]) }}" method="POST">
+                        <form action="{{ route('vehicle.update', ['id' => $vehicle->id]) }}" method="POST">
                             @csrf
                             <div class="row g-gs">
                                 <div class="col-xxl-9">
@@ -103,8 +103,8 @@
                                                                         data-search="true" data-sort="false">
                                                                         <option value="">Select an option
                                                                         </option>
-                                                                        <option value="Automatic">Automatic</option>
-                                                                        <option value="Manual">Manual</option>
+                                                                        <option value="Automatic" <?php if($vehicle->transmission_type == 'Automatic') { echo 'selected'; } ?>>Automatic</option>
+                                                                        <option value="Manual" <?php if($vehicle->transmission_type == 'Manual') { echo 'selected'; } ?>>Manual</option>
                                                                     </select>
                                                                 </div>
                                                             </div>

@@ -57,4 +57,16 @@ class EstimationController extends Controller
 
     }
 
+    public function delete($id)
+    {
+        $estimation = Estimation::where('id', $id)->first();
+        $estimation->delete();
+
+        Alert::success("Estimation deleted successfully!", "Estimation deleted successfully.");
+
+
+        return redirect()->back();
+
+    }
+
 }

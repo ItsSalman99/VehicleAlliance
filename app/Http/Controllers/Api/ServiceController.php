@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AppointedService;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ServiceController extends Controller
 {
@@ -21,47 +22,78 @@ class ServiceController extends Controller
 
     public function appoint(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'date' => 'required|date',
+            'address' => 'required',
+            'sid' => 'required'
+            // 'qty' => 'required',
+        ]);
 
-        // return response()->json([
-        //     'status' => true,
-        //     'data' => $request->sid . ' - ' . $id,
-        //     'msg' => 'Service has been booked!'
-        // ]);
-
-        $check = AppointedService::where('user_id', $id)->first();
-
-        if ($check) {
-            # code...
-            if ($check->service_id == $request->service_id) {
-                # code...
-
-                return response()->json([
-                    'status' => false,
-                    'data' => 'Already in progress!'
-                ]);
-
-            }
-        }
-
-        $appoint  = new AppointedService();
-
-        $appoint->user_id = $id;
-        $appoint->service_id = $request->sid;
-
-        $appoint->save();
-
-        if ($appoint) {
-
+        if ($validator->fails()) {
             return response()->json([
-                'status' => true,
-                'data' => $appoint,
+                'status' => false,
+                'message' => $validator->errors()->first()
             ]);
         }
 
-        return response()->json([
-            'status' => false,
-            'data' => 'Something went wrong!'
-        ]);
+        try {
+            //code...
+            $check = AppointedService::where('user_id', $id)->first();
+
+            if ($check) {
+                # code...
+                if ($check->service_id == $request->sid) {
+                    # code...
+
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Already booked!'
+                    ]);
+                }
+            }
+
+            $checkDate = Service::where('id', $request->sid)
+                ->whereDate('start_available_date', '>', $request->date)
+                ->whereDate('end_available_date', '<', $request->date)
+                ->first();
+
+            if (!$checkDate) {
+                $appoint  = new AppointedService();
+
+                $appoint->user_id = $id;
+                $appoint->service_id = $request->sid;
+                $appoint->date = $request->date;
+                $appoint->address = $request->address;
+                $appoint->status = 'In Proggress';
+
+                $appoint->save();
+
+                if ($appoint) {
+
+                    return response()->json([
+                        'status' => true,
+                        'data' => $appoint,
+                    ]);
+                }
+
+                return response()->json([
+                    'status' => false,
+                    'data' => 'Something went wrong!'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Please select a valid date!'
+                ]);
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 
     public function getAppointmentsByUser($id)
