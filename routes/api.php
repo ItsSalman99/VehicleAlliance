@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EstimationController;
+use App\Http\Controllers\Api\FuelController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\PollController;
 use App\Http\Controllers\Api\ProductController;
@@ -12,7 +13,6 @@ use App\Http\Controllers\Api\SliderController;
 use App\Http\Controllers\Api\SubscriptionController;
 use App\Http\Controllers\Api\VehicleController;
 use App\Http\Controllers\Api\VehicleIssueController;
-use App\Http\Controllers\FuelController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserSubscriptionController;
 use App\Http\Controllers\VehicleModelController;
@@ -44,6 +44,7 @@ Route::get('vehicles/models/getAll', [VehicleModelController::class, 'getAll']);
 Route::get('vehicles/issues/getAll', [VehicleIssueController::class, 'getAll']);
 
 Route::get('fuel/getAll', [FuelController::class, 'getAll']);
+Route::post('fuel/request/store', [FuelController::class, 'store']);
 
 Route::get('poll/getAll', [PollController::class, 'getAll']);
 Route::post('poll/store', [PollController::class, 'store'])->name('poll.store');
@@ -54,6 +55,7 @@ Route::get('notifications', [NotificationController::class, 'getAll']);
 Route::post('subscribe', [SubscriptionController::class, 'subscribe']);
 
 Route::post('order/place', [OrderController::class, 'createOrder']);
+Route::get('order/history/{id}', [OrderController::class, 'orderHistory']);
 
 Route::get('rewards/all', [RewardController::class, 'getAll']);
 Route::get('rewards/shuffle/{id}', [RewardController::class, 'shuffle']);

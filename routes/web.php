@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\PollController;
 use App\Http\Controllers\AppointedServicesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EstimationController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RewardController;
@@ -109,5 +110,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 
 });
+
+Route::get('privacy-policy', [HomeController::class, 'privacy'])->name('privacy');
+Route::get('terms-conditions', [HomeController::class, 'terms'])->name('terms');
 
 require __DIR__.'/auth.php';

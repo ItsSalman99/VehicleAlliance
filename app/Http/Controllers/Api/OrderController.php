@@ -107,4 +107,17 @@ class OrderController extends Controller
             ]);
         }
     }
+
+    public function orderHistory($id)
+    {
+
+        $order = Order::where('user_id', $id)->with('order_items')->get();
+
+        return response()->json([
+            'status' => true,
+            'data' => $order
+        ]);
+
+    }
+
 }
