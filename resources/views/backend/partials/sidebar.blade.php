@@ -134,6 +134,28 @@
                                         class="nk-menu-link"><span class="nk-menu-text">View</span></a></li>
                             </ul>
                         </li>
+                  
+                  		<li class="nk-menu-heading">
+                            <h6 class="overline-title">Fuel</h6>
+                        </li>
+                        <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
+                                    class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span><span
+                                    class="nk-menu-text">Fuel</span></a>
+                            <ul class="nk-menu-sub">
+                                <li class="nk-menu-item"><a href="{{ route('fuels.index') }}"
+                                        class="nk-menu-link"><span class="nk-menu-text">View</span></a></li>
+                                <li class="nk-menu-item"><a href="{{ route('fuels.create') }}"
+                                        class="nk-menu-link"><span class="nk-menu-text">Add More</span></a></li>
+                            </ul>
+                        </li>
+						<li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
+                                    class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span><span
+                                    class="nk-menu-text">Fuel Requests</span></a>
+                            <ul class="nk-menu-sub">
+                                <li class="nk-menu-item"><a href="{{ route('fuelsrequests.index') }}"
+                                        class="nk-menu-link"><span class="nk-menu-text">View</span></a></li>
+                            </ul>
+                        </li>
 
                         <li class="nk-menu-heading">
                             <h6 class="overline-title">Estimation</h6>

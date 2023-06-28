@@ -17,6 +17,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserSubscriptionController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\VehicleIssueController;
+use App\Http\Controllers\FuelController;
 use App\Models\Estimation;
 use App\Models\Service;
 use App\Models\StaffServiceAppointment;
@@ -104,6 +105,16 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/rewards/create', [RewardController::class, 'create'])->name('rewards.create');
     Route::post('/rewards/store', [RewardController::class, 'store'])->name('rewards.store');
 
+	Route::get('/fuels', [FuelController::class, 'index'])->name('fuels.index');
+	Route::get('/fuels/create', [FuelController::class, 'create'])->name('fuels.create');
+	Route::post('/fuels/store', [FuelController::class, 'store'])->name('fuels.store');
+	Route::post('/fuels/delete/{id}', [FuelController::class, 'delete'])->name('fuels.delete');
+
+	Route::get('/fuels/requests', [FuelController::class, 'fuelRequest'])->name('fuelsrequests.index');
+	Route::get('/fuels/delivered/{id}', [FuelController::class, 'deliveredRequestStatus'])->name('fuelsrequests.delivered');
+	Route::get('/fuels/cancel/{id}', [FuelController::class, 'cancelRequestStatus'])->name('fuelsrequests.cancel');
+	Route::get('/fuels/requests', [FuelController::class, 'fuelRequest'])->name('fuelsrequests.index');
+  
     //ajax
     Route::get('/getAllStaffs', [AppointedServicesController::class, 'getAllStaffs']);
 

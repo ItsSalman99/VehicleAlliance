@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\SendEmail;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -77,7 +79,9 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password),
                 'type' => $request->usertype
             ]);
-
+		
+          	$user = User::where('id', $user->id)->first();
+          
             // $token = Auth::login($user);
 
             return response()->json([

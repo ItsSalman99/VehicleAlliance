@@ -13,6 +13,7 @@ class AppointedServicesController extends Controller
     public function index()
     {
         $appointments = AppointedService::all();
+        $staffs = User::where('type', 'staff')->get();
 
         return view('backend.appointments.index', compact('appointments'));
     }

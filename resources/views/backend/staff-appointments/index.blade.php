@@ -37,9 +37,6 @@
                                                 Price
                                             </span></th>
                                         <th class="tb-col"><span class="overline-title">
-                                                Timings
-                                            </span></th>
-                                        <th class="tb-col"><span class="overline-title">
                                                 Buyer
                                             </span></th>
                                         <th class="tb-col tb-col-md"><span class="overline-title">Created At</span></th>
@@ -58,9 +55,6 @@
                                             <td class="tb-col"><span class="badge text-bg-success-soft">
                                                     {{ $appointments->appointment->service->price }}
                                                 </span></td>
-                                            <td class="tb-col"><span class="badge text-bg-success-soft">
-                                                    ----
-                                                </span></td>
 
                                             <td class="tb-col"><span class="badge text-bg-success-soft">
                                                     {{ $appointments->appointment->user->name }}
@@ -70,28 +64,36 @@
                                                 </span></td>
                                             <td class="tb-col tb-col-end">
                                                 <div class="d-flex gap-4 justify-content-end">
-                                                    <div>
-                                                        <form method="POST"
-                                                            action="{{ route('staff.appointments.status', ['id' => $appointments->id]) }}">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-soft btn-outline-primary">
-                                                                <span>
-                                                                    {{ $appointments->status }}
-                                                                </span>
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                    <div>
-                                                        <form method="POST"
-                                                            action="{{ route('staff.appointments.cancel', ['id' => $appointments->id]) }}">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-soft btn-outline-danger">
-                                                                <span>
-                                                                    Cancel
-                                                                </span>
-                                                            </button>
-                                                        </form>
-                                                    </div>
+                                                  	@if($appointments->status != "Cancel")
+                                                       <div>
+                                                          <form method="POST"
+                                                              action="{{ route('staff.appointments.status', ['id' => $appointments->id]) }}">
+                                                              @csrf
+                                                              <button type="submit" class="btn btn-soft btn-outline-primary">
+                                                                  <span>
+                                                                      {{ $appointments->status }}
+                                                                  </span>
+                                                              </button>
+                                                          </form>
+                                                      </div>
+                                                      <div>
+                                                            <form method="POST"
+                                                                action="{{ route('staff.appointments.cancel', ['id' => $appointments->id]) }}">
+                                                                @csrf
+                                                                <button type="submit" class="btn btn-soft btn-outline-danger">
+                                                                    <span>
+                                                                        Cancel
+                                                                    </span>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                  	@else
+                                                       <div>
+                                                           	<span class="badge text-bg-success-soft">
+                                                    			Canceled	
+                                                			</span>
+                                                        </div>
+                                                  	@endif
                                                 </div>
 
                                             </td>
