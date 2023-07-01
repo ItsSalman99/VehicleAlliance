@@ -73,3 +73,8 @@ Route::post('user/password/change', [ForgetPasswordController::class, 'changePas
 
 Route::get('biddings/vehicles', [VehicleBiddingController::class, 'getAll']);
 Route::post('biddings/vehicles/bid', [VehicleBiddingController::class, 'bid']);
+
+Route::get('poll/comments', [PollController::class, 'getComments']);
+Route::post('poll/comments/store', [PollController::class, 'storComment']);
+
+
