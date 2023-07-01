@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +18,8 @@ class OrderController extends Controller
         $validator = Validator::make($request->all(), [
             'user_id' => 'required',
             'product_id' => 'required',
-            'total' => 'required'
+            'total' => 'required',
+            'address' => 'required'
             // 'qty' => 'required',
         ]);
 
@@ -27,6 +29,11 @@ class OrderController extends Controller
                 'msg' => $validator->errors()->first()
             ]);
         }
+
+        // return response()->json([
+        //     'status' => false,
+        //     'msg' => count($request->product_id)
+        // ]);
 
         try {
 
@@ -38,7 +45,7 @@ class OrderController extends Controller
 
                 $order->total = $request->total;
                 $order->address = $request->address;
-                $order->save();
+
 
 
                 \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -80,13 +87,26 @@ class OrderController extends Controller
                     // 'capture' => false
                 ]);
 
-                $item = new OrderItem();
-                $item->order_id = $order->id;
-                $item->name = $request->name;
-                $item->price = $request->price;
-                $item->qty = $request->qty;
-                $item->product_id = $request->product_id;
-                $item->save();
+                $order->charge_id = $charge->id;
+                $order->save();
+
+                foreach ($request->product_id as $key => $value) {
+                    # code...
+                    // return response()->json([
+                    //     'status' => false,
+                    //     'msg' => $request->qty[$key]
+                    // ]);
+                    $product = Product::where('id', $value)->first();
+                    if ($product) {
+                        $item = new OrderItem();
+                        $item->order_id = $order->id;
+                        $item->name = $request->name;
+                        $item->price = $product->price;
+                        $item->qty = $request->qty[$key];
+                        $item->product_id = $value;
+                        $item->save();
+                    }
+                }
 
 
                 return response()->json([
@@ -111,13 +131,35 @@ class OrderController extends Controller
     public function orderHistory($id)
     {
 
-        $order = Order::where('user_id', $id)->with('order_items')->get();
+        $order = Order::where('user_id', $id)->with('order_items', 'order_items.product')->get();
 
         return response()->json([
             'status' => true,
             'data' => $order
         ]);
-
     }
 
+    public function cancelOrder(Request $request)
+    {
+
+        $order = Order::where('id', $request->id)
+            ->with('order_items', 'order_items.product')
+            ->first();
+
+        if($order->status == 'Cancelled')
+        {
+            return response()->json([
+                'status' => false,
+                'msg' => 'Order is already cancelled!'
+            ]);
+        }
+        $order->status = 'Cancelled';
+
+        $order->save();
+
+        return response()->json([
+            'status' => true,
+            'msg' => 'Order has been cancelled!'
+        ]);
+    }
 }

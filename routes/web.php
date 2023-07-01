@@ -18,6 +18,7 @@ use App\Http\Controllers\UserSubscriptionController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\VehicleIssueController;
 use App\Http\Controllers\FuelController;
+use App\Http\Controllers\VehicleBiddingController;
 use App\Models\Estimation;
 use App\Models\Service;
 use App\Models\StaffServiceAppointment;
@@ -114,7 +115,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 	Route::get('/fuels/delivered/{id}', [FuelController::class, 'deliveredRequestStatus'])->name('fuelsrequests.delivered');
 	Route::get('/fuels/cancel/{id}', [FuelController::class, 'cancelRequestStatus'])->name('fuelsrequests.cancel');
 	Route::get('/fuels/requests', [FuelController::class, 'fuelRequest'])->name('fuelsrequests.index');
-  
+
+    Route::get('/bidding/vehicles', [VehicleBiddingController::class, 'index'])->name('biddings.index');
+    Route::get('/bidding/vehicles/create', [VehicleBiddingController::class, 'create'])->name('biddings.create');
+    Route::post('/bidding/vehicles/store', [VehicleBiddingController::class, 'store'])->name('biddings.vehicles.store');
+
     //ajax
     Route::get('/getAllStaffs', [AppointedServicesController::class, 'getAllStaffs']);
 

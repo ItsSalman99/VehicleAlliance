@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EstimationController;
+use App\Http\Controllers\Api\ForgetPasswordController;
 use App\Http\Controllers\Api\FuelController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\PollController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Api\RewardController;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\SliderController;
 use App\Http\Controllers\Api\SubscriptionController;
+use App\Http\Controllers\Api\VehicleBiddingController;
 use App\Http\Controllers\Api\VehicleController;
 use App\Http\Controllers\Api\VehicleIssueController;
 use App\Http\Controllers\NotificationController;
@@ -56,6 +58,18 @@ Route::post('subscribe', [SubscriptionController::class, 'subscribe']);
 
 Route::post('order/place', [OrderController::class, 'createOrder']);
 Route::get('order/history/{id}', [OrderController::class, 'orderHistory']);
+Route::post('order/cancel', [OrderController::class, 'cancelOrder']);
 
 Route::get('rewards/all', [RewardController::class, 'getAll']);
+
 Route::get('rewards/shuffle/{id}', [RewardController::class, 'shuffle']);
+
+Route::get('rewards/user/{id}', [RewardController::class, 'getByUser']);
+
+Route::post('user/password/send-otp', [ForgetPasswordController::class, 'sendOTP']);
+Route::post('user/password/check-otp', [ForgetPasswordController::class, 'checkOtp']);
+Route::post('user/password/change', [ForgetPasswordController::class, 'changePassword']);
+
+
+Route::get('biddings/vehicles', [VehicleBiddingController::class, 'getAll']);
+Route::post('biddings/vehicles/bid', [VehicleBiddingController::class, 'bid']);

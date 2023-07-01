@@ -50,6 +50,15 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group"><label for="productname"
+                                                                    class="form-label">Reward Discount (Fix)</label>
+                                                                <div class="form-control-wrap">
+                                                                    <input type="number" name="discount" min="1"
+                                                                        class="form-control" placeholder="Discount">
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

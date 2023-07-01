@@ -134,7 +134,7 @@
                                         class="nk-menu-link"><span class="nk-menu-text">View</span></a></li>
                             </ul>
                         </li>
-                  
+
                   		<li class="nk-menu-heading">
                             <h6 class="overline-title">Fuel</h6>
                         </li>
@@ -222,6 +222,20 @@
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="nk-menu-heading">
+                            <h6 class="overline-title">Vehicles Bidding</h6>
+                        </li>
+                        <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
+                                    class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span><span
+                                    class="nk-menu-text">Vehicles Bidding</span></a>
+                            <ul class="nk-menu-sub">
+                                <li class="nk-menu-item"><a href="{{ route('biddings.index') }}"
+                                        class="nk-menu-link"><span class="nk-menu-text">Manage Bidding</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
                     @elseif(Auth::user()->type == 'staff')
                         <li class="nk-menu-heading">
                             <h6 class="overline-title">My Services Appointments</h6>

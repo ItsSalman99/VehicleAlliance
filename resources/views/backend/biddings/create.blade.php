@@ -23,7 +23,8 @@
                                 <ul class="d-flex">
                                     <li><a href="#" class="btn btn-primary btn-md d-md-none"><em
                                                 class="icon ni ni-eye"></em><span>View</span></a></li>
-                                    <li><a href="{{ route('vehicle.index') }}" class="btn btn-primary d-none d-md-inline-flex"><em
+                                    <li><a href="{{ route('biddings.index') }}"
+                                            class="btn btn-primary d-none d-md-inline-flex"><em
                                                 class="icon ni ni-eye"></em><span>View Vehicles</span></a>
                                     </li>
                                 </ul>
@@ -31,7 +32,7 @@
                         </div>
                     </div>
                     <div class="nk-block">
-                        <form action="{{ route('vehicle.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('biddings.vehicles.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row g-gs">
                                 <div class="col-xxl-9">
@@ -40,6 +41,15 @@
                                             <div class="card card-gutter-md">
                                                 <div class="card-body">
                                                     <div class="row g-gs">
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group"><label for="image"
+                                                                    class="form-label">Vehicle Image</label>
+                                                                <div class="form-control-wrap">
+                                                                    <input type="file" name="img"
+                                                                        class="form-control" placeholder="Vehicle Image">
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="col-lg-12">
                                                             <div class="form-group"><label for="productname"
                                                                     class="form-label">Vehicle Name</label>
@@ -50,29 +60,35 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6">
-                                                            <div class="form-group"><label for="price"
+                                                            <div class="form-group"><label for="minprice"
                                                                     class="form-label">
-                                                                    Vehicle Price
+                                                                    Min. Selling Price
                                                                 </label>
                                                                 <div class="form-control-wrap">
                                                                     <input type="number" class="form-control"
-                                                                        name="price" placeholder="Vehicle price">
+                                                                        name="min_price" placeholder="Min. Vehicle price">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6">
-                                                            <div class="form-group"><label for="tax-class"
-                                                                    class="form-label">Vehicle Model</label>
+                                                            <div class="form-group"><label for="maxprice"
+                                                                    class="form-label">
+                                                                    Max. Selling Price
+                                                                </label>
                                                                 <div class="form-control-wrap">
-                                                                    <select class="js-select" name="model"
-                                                                        data-search="true" data-sort="false">
-                                                                        <option value="">Select an option
-                                                                        </option>
-                                                                        @foreach ($models as $model)
-                                                                            <option value="{{ $model->id }}">{{ $model->model }}
-                                                                            </option>
-                                                                        @endforeach
-                                                                    </select>
+                                                                    <input type="number" class="form-control"
+                                                                        name="max_price" placeholder="Max.Vehicle price">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group"><label for="price"
+                                                                    class="form-label">
+                                                                    Vehicle Model
+                                                                </label>
+                                                                <div class="form-control-wrap">
+                                                                    <input type="text" class="form-control"
+                                                                        name="model" placeholder="Vehicle Model">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -82,7 +98,8 @@
                                                                     Engine Capacity
                                                                 </label>
                                                                 <div class="form-control-wrap"><input type="text"
-                                                                        class="form-control" name="engine_capacity" placeholder="">
+                                                                        class="form-control" name="engine_capacity"
+                                                                        placeholder="">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -99,6 +116,16 @@
                                                                         <option value="Automatic">Automatic</option>
                                                                         <option value="Manual">Manual</option>
                                                                     </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group"><label for="description"
+                                                                    class="form-label">
+                                                                    Description
+                                                                </label>
+                                                                <div class="form-control-wrap">
+                                                                    <textarea name="description" class="form-control"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -122,8 +149,9 @@
                                             <div class="row g-gs">
                                                 <div class="col-12">
                                                     <div class="form-group"><label class="form-label">Tags</label>
-                                                        <div class="form-control-wrap"><input class="js-tags" value=""
-                                                                type="text" placeholder="Add tags to a product"></div>
+                                                        <div class="form-control-wrap"><input class="js-tags"
+                                                                value="" type="text"
+                                                                placeholder="Add tags to a product"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">

@@ -22,9 +22,18 @@ class RewardController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
+        $length = 4;
+
+        $original_string = array_merge(range(0,29), range('a','z'), range('A', 'Z'));
+        $original_string = implode("", $original_string);
+        $random = substr(str_shuffle($original_string), 0, $length);
+
         $reward = new Reward();
 
         $reward->name = $request->name;
+        $reward->discount = $request->discount;
+        $reward->voucher = $random . rand(00, 99);
         $reward->save();
 
 

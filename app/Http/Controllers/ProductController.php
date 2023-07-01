@@ -8,6 +8,7 @@ use Alert;
 use App\Models\Notification;
 use App\Models\Shop;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -27,6 +28,19 @@ class ProductController extends Controller
     {
         // dd($request->all());
 
+        $validator = Validator::make($request->all(), [
+            'img' => 'required|image'
+        ]);
+
+        if($validator->fails())
+        {
+
+            Alert::error($validator->errors()->first(), $validator->errors()->first());
+
+            return redirect()->back()->withInput($request->all());
+
+        }
+
         $product = new Product();
 
         $product->name = $request->name;
@@ -41,12 +55,17 @@ class ProductController extends Controller
             $filename = $request->name . '_'  . $request->img->getClientOriginalName();
 
             $request->img->move(public_path('assets/frontend/img/uploads/products/'), $filename);
+
+
         }
         $product->img = 'assets/frontend/img/uploads/products/' . $filename;
         // dd(Auth::user()->id);
         $product->seller_id = Auth::user()->id;
         $shop = Shop::where('seller_id', Auth::user()->id)->first();
-        $product->shop_id = $shop->id;
+        if($shop)
+        {
+            $product->shop_id = $shop->id;
+        }
 
         $product->save();
 
@@ -82,6 +101,19 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->all());
+
+        $validator = Validator::make($request->all(), [
+            'img' => 'required|mimes:jpg'
+        ]);
+
+        if($validator->fails())
+        {
+
+            Alert::error($validator->errors()->first(), $validator->errors()->first());
+
+            return redirect()->back()->withInput($request->all());
+
+        }
 
         $product = Product::where('id', $id)->first();
 
