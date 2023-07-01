@@ -107,7 +107,7 @@ class PollController extends Controller
 
             $poll->user_id = $request->user_id;
             $poll->poll_id = $request->poll_id;
-            $poll->comment = $request->commment;
+            $poll->comment = $request->comment;
 
             $poll->save();
 
