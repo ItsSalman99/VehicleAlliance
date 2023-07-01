@@ -77,7 +77,7 @@ class PollController extends Controller
 
     public function getComments($id)
     {
-        $comment = PollComment::where('poll_id', $id)->get();
+        $comment = PollComment::where('poll_id', $id)->with('user')->get();
 
         return response()->json([
             'status' => true,
