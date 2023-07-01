@@ -114,7 +114,7 @@ class PollController extends Controller
             if ($poll) {
                 return response()->json([
                     'status' => true,
-                    'data' => $poll
+                    'msg' => 'Comment added!'
                 ]);
             }
         } catch (\Throwable $th) {
