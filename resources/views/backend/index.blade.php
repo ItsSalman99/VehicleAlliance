@@ -382,6 +382,40 @@
                                     </div>
                                 </div>
                             </div>
+                          <div class="col-sm-4 col-xl-4 col-xxl-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-title-group align-items-start">
+                                            <div class="card-title">
+                                                <h4 class="title">Total Orders</h4>
+                                            </div>
+                                            <div class="media media-middle media-circle media-sm text-bg-primary-soft">
+                                                <em class="icon icon-md ni ni-user-alt-fill"></em>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 mb-4">
+                                            <div class="amount h1">{{ $orders }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          	<div class="col-sm-4 col-xl-4 col-xxl-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-title-group align-items-start">
+                                            <div class="card-title">
+                                                <h4 class="title">Total Orders Earned</h4>
+                                            </div>
+                                            <div class="media media-middle media-circle media-sm text-bg-primary-soft">
+                                                <em class="icon icon-md ni ni-user-alt-fill"></em>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 mb-4">
+                                            <div class="amount h1">{{ $orderEarned }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     @endif
                 </div>

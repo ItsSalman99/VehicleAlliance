@@ -65,9 +65,13 @@
                                                                 <li><a href="{{ route('orders.show', ['id'=> $order->id]) }}"><em
                                                                             class="icon ni ni-eye"></em><span>View Details</span></a>
                                                                 </li>
-                                                                {{-- <li><a href="products.html"><em
-                                                                        class="icon ni ni-eye"></em><span>View
-                                                                            Details</span></a></li> --}}
+                                                              	@if(Auth::user()->type == 'seller')
+                                                                  <li><a href="{{ route('orders.status', ['id'=> $order->id]) }}"><em
+                                                                              class="icon ni ni-eye"></em><span>
+                                                                          Change Status
+                                                                    </span></a>
+                                                                  </li>
+                                                              	@endif
                                                             </ul>
                                                         </div>
                                                     </div>

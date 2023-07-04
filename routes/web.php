@@ -101,6 +101,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/show/{id}', [OrderController::class, 'show'])->name('orders.show');
+    Route::get('/orders/status/{id}', [OrderController::class, 'changeStatus'])->name('orders.status');
 
     Route::get('/rewards', [RewardController::class, 'index'])->name('rewards.index');
     Route::get('/rewards/create', [RewardController::class, 'create'])->name('rewards.create');

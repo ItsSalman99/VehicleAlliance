@@ -38,10 +38,11 @@ class OrderController extends Controller
         try {
 
             $user = User::where('id', $request->user_id)->first();
+          
             if ($user) {
                 $order = new Order();
-
-                $order->user_id = $request->user_id;
+				
+              	$order->user_id = $request->user_id;
 
                 $order->total = $request->total;
                 $order->address = $request->address;
@@ -97,14 +98,22 @@ class OrderController extends Controller
                     //     'msg' => $request->qty[$key]
                     // ]);
                     $product = Product::where('id', $value)->first();
-                    if ($product) {
-                        $item = new OrderItem();
+                    
+                  	if ($product) {
+                      
+                      	$order = Order::where('id', $order->id)->first();
+                      
+                      	$order->seller_id = $product->seller_id;
+                      	$order->save();
+                      
+                      	$item = new OrderItem();
                         $item->order_id = $order->id;
                         $item->name = $request->name;
                         $item->price = $product->price;
                         $item->qty = $request->qty[$key];
                         $item->product_id = $value;
                         $item->save();
+                      
                     }
                 }
 
