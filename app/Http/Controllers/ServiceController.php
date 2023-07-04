@@ -28,7 +28,7 @@ class ServiceController extends Controller
 
         if ($request->hasFile('img')) {
 
-            $filename = $request->name . '_'  . $request->img->getClientOriginalName();
+            $filename = $request->img->getClientOriginalName();
 
             $request->img->move(public_path('assets/frontend/img/uploads/services/'), $filename);
         }
@@ -53,7 +53,7 @@ class ServiceController extends Controller
 
         toast("New service uploaded", "success");
 
-        return redirect()->back();
+        return redirect()->route('services.index');
     }
 
     public function edit($id)
@@ -77,7 +77,7 @@ class ServiceController extends Controller
         $service->available_etime = $request->etime;
         if ($request->hasFile('img')) {
 
-            $filename = $request->name . '_'  . $request->img->getClientOriginalName();
+            $filename = $request->img->getClientOriginalName();
 
             $request->img->move(public_path('assets/frontend/img/uploads/services/'), $filename);
             $service->img = 'assets/frontend/img/uploads/services/' . $filename;
@@ -89,7 +89,7 @@ class ServiceController extends Controller
 
         toast("Service Updated Successfully!", "success");
 
-        return redirect()->back();
+        return redirect()->route('services.index');
     }
 
     public function delete($id)

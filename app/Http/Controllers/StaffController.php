@@ -38,7 +38,7 @@ class StaffController extends Controller
 
         toast("New Staff Created!!", "success");
 
-        return redirect()->back();
+        return redirect()->route('staffs.index');
 
     }
 
