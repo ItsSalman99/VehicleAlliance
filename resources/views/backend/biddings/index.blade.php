@@ -43,6 +43,7 @@
                                         <th class="tb-col tb-col-md"><span class="overline-title">Transmission Type</span>
                                         </th>
                                         <th class="tb-col tb-col-md"><span class="overline-title">Model</span></th>
+                                        <th class="tb-col tb-col-md"><span class="overline-title">Complete</span></th>
                                         <th class="tb-col tb-col-end" data-sortable="false"><span
                                                 class="overline-title">action</span></th>
                                     </tr>
@@ -51,20 +52,31 @@
                                     @foreach ($vehicles as $vehicle)
                                         <tr>
                                             <td class="tb-col tb-col-md"><span>
-                                                {{ $vehicle->name }}
-                                            </span></td>
+                                                    {{ $vehicle->name }}
+                                                </span></td>
                                             <td class="tb-col tb-col-md"><span>
-                                                {{ $vehicle->price }}
-                                            </span></td>
+                                                    Rs. {{ $vehicle->min_price }} to Rs. {{ $vehicle->max_price }}
+                                                </span></td>
                                             <td class="tb-col"><span>
-                                                {{ $vehicle->engine_capacity }}
-                                            </span></td>
+                                                    {{ $vehicle->engine_capacity }}
+                                                </span></td>
                                             <td class="tb-col tb-col-md"><span>
-                                                {{ $vehicle->transmission_type }}
-                                            </span></td>
+                                                    {{ $vehicle->transmission_type }}
+                                                </span></td>
                                             <td class="tb-col tb-col-md"><span>
-                                                {{ $vehicle->year_model }}
-                                            </span></td>
+                                                    {{ $vehicle->year_model }}
+                                                </span></td>
+                                            <td class="tb-col tb-col-md">
+                                                @if ($vehicle->active == 1)
+                                                    <span>
+                                                        Confirmed
+                                                    </span>
+                                                @else
+                                                    <span>
+                                                        In Progress
+                                                    </span>
+                                                @endif
+                                            </td>
                                             <td class="tb-col tb-col-end">
                                                 <div class="dropdown"><a href="#"
                                                         class="btn btn-sm btn-icon btn-zoom me-n1"
@@ -72,10 +84,16 @@
                                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
                                                         <div class="dropdown-content py-1">
                                                             <ul class="link-list link-list-hover-bg-primary link-list-md">
-                                                                <li><a href="{{ route('vehicle.edit', ['id'=>$vehicle->id]) }}"><em
+                                                                <li><a
+                                                                        href="{{ route('biddings.show', ['id' => $vehicle->id]) }}"><em
+                                                                            class="icon ni ni-edit"></em><span>View</span></a>
+                                                                </li>
+                                                                <li><a
+                                                                        href="{{ route('biddings.edit', ['id' => $vehicle->id]) }}"><em
                                                                             class="icon ni ni-edit"></em><span>Edit</span></a>
                                                                 </li>
-                                                                <li><a href="{{ route('vehicle.delete', ['id'=>$vehicle->id]) }}"><em
+                                                                <li><a
+                                                                        href="{{ route('vehicle.delete', ['id' => $vehicle->id]) }}"><em
                                                                             class="icon ni ni-trash"></em><span>Delete</span></a>
                                                                 </li>
                                                             </ul>

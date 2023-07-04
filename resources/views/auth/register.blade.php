@@ -189,6 +189,8 @@
                 <input type="email" name="email" id="email" placeholder="Email Address"
                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
                 <p class="errMsg"></p>
+                <input type="text" name="phone" id="phone" placeholder="Contact #" required />
+                <p class="errMsg"></p>
                 <input type="password" name="password" id="password" placeholder="Password" required />
                 <p class="errMsg"></p>
                 <input type="password" name="password_confirmation" id="password" placeholder="Password" required />

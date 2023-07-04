@@ -64,36 +64,44 @@
                                                 </span></td>
                                             <td class="tb-col tb-col-end">
                                                 <div class="d-flex gap-4 justify-content-end">
-                                                  	@if($appointments->status != "Cancel")
-                                                       <div>
-                                                          <form method="POST"
-                                                              action="{{ route('staff.appointments.status', ['id' => $appointments->id]) }}">
-                                                              @csrf
-                                                              <button type="submit" class="btn btn-soft btn-outline-primary">
-                                                                  <span>
-                                                                      {{ $appointments->status }}
-                                                                  </span>
-                                                              </button>
-                                                          </form>
-                                                      </div>
-                                                      <div>
+                                                    @if ($appointments->status != 'Cancel' && $appointments->status != 'Completed')
+                                                        <div>
+                                                            <form method="POST"
+                                                                action="{{ route('staff.appointments.status', ['id' => $appointments->id]) }}">
+                                                                @csrf
+                                                                <button type="submit"
+                                                                    class="btn btn-soft btn-outline-primary">
+                                                                    <span>
+                                                                        {{ $appointments->status }}
+                                                                    </span>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        <div>
                                                             <form method="POST"
                                                                 action="{{ route('staff.appointments.cancel', ['id' => $appointments->id]) }}">
                                                                 @csrf
-                                                                <button type="submit" class="btn btn-soft btn-outline-danger">
+                                                                <button type="submit"
+                                                                    class="btn btn-soft btn-outline-danger">
                                                                     <span>
                                                                         Cancel
                                                                     </span>
                                                                 </button>
                                                             </form>
                                                         </div>
-                                                  	@else
-                                                       <div>
-                                                           	<span class="badge text-bg-success-soft">
-                                                    			Canceled	
-                                                			</span>
+                                                    @elseif($appointments->status === 'Completed')
+                                                        <div>
+                                                            <span class="badge text-bg-success-soft">
+                                                                Completed
+                                                            </span>
                                                         </div>
-                                                  	@endif
+                                                    @else
+                                                        <div>
+                                                            <span class="badge text-bg-success-soft">
+                                                                Canceled
+                                                            </span>
+                                                        </div>
+                                                    @endif
                                                 </div>
 
                                             </td>

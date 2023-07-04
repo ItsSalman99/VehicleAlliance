@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class SellerVehicle extends Model
 {
     use HasFactory;
+
+
+    public function user_bidings()
+    {
+        return $this->hasMany(UserBidding::class, 'vehicle_id', 'id');
+    }
+
 }

@@ -10,16 +10,17 @@
                             <div class="nk-block-head-between flex-wrap gap g-2 align-items-start">
                                 <div class="nk-block-head-content">
                                     <div class="d-flex flex-column flex-md-row align-items-md-center">
-                                        <div class="media media-huge media-circle"><img src=""
-                                                class="img-thumbnail" alt="">
+                                        <div class="media media-huge media-circle"><img src="" class="img-thumbnail"
+                                                alt="">
                                         </div>
                                         <div class="mt-3 mt-md-0 ms-md-3">
                                             <h3 class="title mb-1">#Order-{{ $order->id }}</h3><span class="small">
                                                 {{ $order->user->name }}
                                             </span>
                                             <ul class="nk-list-option pt-1">
-                                                <li><em class="icon ni ni-map-pin"></em><span class="small">California,
-                                                        United States</span></li>
+                                                <li><em class="icon ni ni-map-pin"></em><span class="small">
+                                                    {{$order->address}}
+                                                    </span></li>
                                                 <li><em class="icon ni ni-building"></em><span class="small">Softnio</span>
                                                 </li>
                                             </ul>
@@ -30,10 +31,9 @@
                                     <div class="gap-col">
                                         <ul class="d-flex gap g-2">
                                             <li class="d-none d-md-block"><a href="user-edit.html"
-                                                    class="btn btn-soft btn-primary"><em
-                                                        class="icon ni ni-edit"></em><span>
+                                                    class="btn btn-soft btn-primary"><em class="icon ni ni-edit"></em><span>
                                                         Change Status
-                                                        </span></a>
+                                                    </span></a>
                                             </li>
                                             <li class="d-md-none"><a href="user-edit.html"
                                                     class="btn btn-soft btn-primary btn-icon"><em

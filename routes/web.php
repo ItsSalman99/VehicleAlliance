@@ -120,6 +120,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/bidding/vehicles', [VehicleBiddingController::class, 'index'])->name('biddings.index');
     Route::get('/bidding/vehicles/create', [VehicleBiddingController::class, 'create'])->name('biddings.create');
     Route::post('/bidding/vehicles/store', [VehicleBiddingController::class, 'store'])->name('biddings.vehicles.store');
+    Route::get('/bidding/vehicles/show/{id}', [VehicleBiddingController::class, 'show'])->name('biddings.show');
+    Route::get('/bidding/vehicles/edit/{id}', [VehicleBiddingController::class, 'edit'])->name('biddings.edit');
+    Route::post('/bidding/vehicles/update/{id}', [VehicleBiddingController::class, 'update'])->name('biddings.vehicles.update');
+    Route::get('/bidding/vehicles/delete/{id}', [VehicleBiddingController::class, 'delete'])->name('biddings.vehicles.delete');
+    Route::get('/bidding/vehicles/confirm/{id}', [VehicleBiddingController::class, 'confirmed'])->name('biddings.vehicles.confirm');
 
     //ajax
     Route::get('/getAllStaffs', [AppointedServicesController::class, 'getAllStaffs']);

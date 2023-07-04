@@ -363,7 +363,7 @@
                                 </div>
                             </div>
                         </div>
-                    @else
+                    @elseif(Auth::user()->type == 'seller')
                         <div class="row g-gs">
                             <div class="col-sm-12 col-xl-12 col-xxl-12">
                                 <div class="card h-100">
@@ -382,7 +382,7 @@
                                     </div>
                                 </div>
                             </div>
-                          <div class="col-sm-4 col-xl-4 col-xxl-4">
+                            <div class="col-sm-4 col-xl-4 col-xxl-4">
                                 <div class="card h-100">
                                     <div class="card-body">
                                         <div class="card-title-group align-items-start">
@@ -399,7 +399,10 @@
                                     </div>
                                 </div>
                             </div>
-                          	<div class="col-sm-4 col-xl-4 col-xxl-4">
+                            @php
+                                $charge = $orderEarned * 0.2;
+                            @endphp
+                            <div class="col-sm-4 col-xl-4 col-xxl-4">
                                 <div class="card h-100">
                                     <div class="card-body">
                                         <div class="card-title-group align-items-start">
@@ -411,7 +414,103 @@
                                             </div>
                                         </div>
                                         <div class="mt-2 mb-4">
-                                            <div class="amount h1">{{ $orderEarned }}</div>
+                                            <div class="amount h1">Rs. {{ $orderEarned }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xl-4 col-xxl-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-title-group align-items-start">
+                                            <div class="card-title">
+                                                <h4 class="title">Total Earning Recieved</h4>
+                                            </div>
+                                            <div class="media media-middle media-circle media-sm text-bg-primary-soft">
+                                                <em class="icon icon-md ni ni-user-alt-fill"></em>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 mb-4">
+                                            <div class="amount h1">Rs. {{ $orderEarned - $charge }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @elseif(Auth::user()->type == 'staff')
+                        <div class="row g-gs">
+                            <div class="col-sm-12 col-xl-12 col-xxl-12">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-title-group align-items-start">
+                                            <div class="card-title">
+                                                <h4 class="title">Welcome to your dashboard</h4>
+                                            </div>
+                                            <div class="media media-middle media-circle media-sm text-bg-primary-soft">
+                                                <em class="icon icon-md ni ni-user-alt-fill"></em>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 mb-4">
+                                            <div class="amount h1">Hello dear, {{ Auth::user()->name }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xl-4 col-xxl-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-title-group align-items-start">
+                                            <div class="card-title">
+                                                <h4 class="title">Total Appointments</h4>
+                                            </div>
+                                            <div class="media media-middle media-circle media-sm text-bg-primary-soft">
+                                                <em class="icon icon-md ni ni-user-alt-fill"></em>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 mb-4">
+                                            <div class="amount h1">{{ $appointments }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xl-4 col-xxl-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-title-group align-items-start">
+                                            <div class="card-title">
+                                                <h4 class="title">Total Appointments Assigned</h4>
+                                            </div>
+                                            <div class="media media-middle media-circle media-sm text-bg-primary-soft">
+                                                <em class="icon icon-md ni ni-user-alt-fill"></em>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 mb-4">
+                                            <div class="amount h1">{{ $assigned_appointments }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @php
+                                $earned_amount = 0;
+                                foreach ($earned as $item) {
+                                    $earned_amount += (int) $item->appointment->service->price * 0.5;
+                                }
+                            @endphp
+                            <div class="col-sm-4 col-xl-4 col-xxl-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-title-group align-items-start">
+                                            <div class="card-title">
+                                                <h4 class="title">Total Earned</h4>
+                                            </div>
+                                            <div class="media media-middle media-circle media-sm text-bg-primary-soft">
+                                                <em class="icon icon-md ni ni-user-alt-fill"></em>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2 mb-4">
+                                            <div class="amount h1">
+                                                {{ $earned_amount }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -190,7 +190,7 @@
                             </ul>
                         </li>
                     @elseif(Auth::user()->type == 'seller')
-                        <li class="nk-menu-heading">
+                        {{-- <li class="nk-menu-heading">
                             <h6 class="overline-title">Shop</h6>
                         </li>
                         <li class="nk-menu-item has-sub"><a href="#" class="nk-menu-link nk-menu-toggle"><span
@@ -200,7 +200,7 @@
                                 <li class="nk-menu-item"><a href="{{ route('manage-shop') }}"
                                         class="nk-menu-link"><span class="nk-menu-text">Manage Shop</span></a></li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <li class="nk-menu-heading">
                             <h6 class="overline-title">Proucts</h6>
                         </li>
