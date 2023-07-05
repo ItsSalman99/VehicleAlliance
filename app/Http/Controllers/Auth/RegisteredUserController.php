@@ -58,7 +58,6 @@ class RegisteredUserController extends Controller
 
     public function changePassword(Request $request, $id)
     {
-        dd($request->all());
         $user = User::where('id', $id)->first();
 
         $user->password = Hash::make($request->password);
