@@ -59,7 +59,7 @@
                                                     {{ $order->seller->name }}
                                                 </span></td>
                                             <td class="tb-col tb-col-md"><span>
-                                                    {{ $order->seller->contact }}
+                                                    {{ $order->seller->phone }}
                                                 </span></td>
                                             <td class="tb-col"><span class="badge text-bg-success-soft">
                                                     {{ $order->total }}
