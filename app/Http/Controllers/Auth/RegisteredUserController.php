@@ -9,7 +9,9 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules;
+use Alert;
 
 class RegisteredUserController extends Controller
 {
@@ -34,12 +36,19 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'email' => ['required', 'string'],
             'password' => ['required', 'confirmed'],
         ]);
+
+        if($validator->fails())
+        {
+
+            toast($validator->errors()->first(), 'error');
+            return redirect()->back()->withInput();
+        }
 
         $user = User::create([
             'name' => $request->name,
