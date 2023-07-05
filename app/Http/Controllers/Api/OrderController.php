@@ -127,6 +127,8 @@ class OrderController extends Controller
 
                 Mail::to($user->email)->send(new OrderEmail($data));
 
+                $user->is_rewarded = 0;
+                $user->save();
 
                 return response()->json([
                     'status' => true,
