@@ -36,15 +36,15 @@ class AuthController extends Controller
         $token = Auth::attempt($credentials);
 
         if (!$token || $buyer->type != "buyer") {
-            if ($buyer->email_verified_at == NULL) {
-                return response()->json([
-                    'status' => 500,
-                    'message' => 'Please verify your email first!',
-                ]);
-            }
             return response()->json([
                 'status' => 500,
                 'message' => 'Unauthorized, Please check your credentials.',
+            ]);
+        }
+        if ($buyer->email_verified_at == NULL) {
+            return response()->json([
+                'status' => 500,
+                'message' => 'Please verify your email first!',
             ]);
         }
 
