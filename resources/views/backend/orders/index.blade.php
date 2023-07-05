@@ -29,6 +29,12 @@
                                         <th class="tb-col"><span class="overline-title">#</span></th>
                                         <th class="tb-col tb-col-md"><span class="overline-title">Buyer</span>
                                         </th>
+                                        <th class="tb-col tb-col-md"><span class="overline-title">Buyer Contact</span>
+                                        </th>
+                                        <th class="tb-col tb-col-md"><span class="overline-title">Seller</span>
+                                        </th>
+                                        <th class="tb-col tb-col-md"><span class="overline-title">Seller Contact</span>
+                                        </th>
                                         <th class="tb-col"><span class="overline-title">Total</span></th>
                                         <th class="tb-col tb-col-md"><span class="overline-title">Status</span></th>
                                         <th class="tb-col tb-col-md"><span class="overline-title">Created At</span></th>
@@ -46,6 +52,15 @@
                                             <td class="tb-col tb-col-md"><span>
                                                     {{ $order->user->name }}
                                                 </span></td>
+                                            <td class="tb-col tb-col-md"><span>
+                                                    {{ $order->user->phone }}
+                                                </span></td>
+                                            <td class="tb-col tb-col-md"><span>
+                                                    {{ $order->seller->name }}
+                                                </span></td>
+                                            <td class="tb-col tb-col-md"><span>
+                                                    {{ $order->seller->contact }}
+                                                </span></td>
                                             <td class="tb-col"><span class="badge text-bg-success-soft">
                                                     {{ $order->total }}
                                                 </span></td>
@@ -62,16 +77,19 @@
                                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
                                                         <div class="dropdown-content py-1">
                                                             <ul class="link-list link-list-hover-bg-primary link-list-md">
-                                                                <li><a href="{{ route('orders.show', ['id'=> $order->id]) }}"><em
-                                                                            class="icon ni ni-eye"></em><span>View Details</span></a>
+                                                                <li><a
+                                                                        href="{{ route('orders.show', ['id' => $order->id]) }}"><em
+                                                                            class="icon ni ni-eye"></em><span>View
+                                                                            Details</span></a>
                                                                 </li>
-                                                              	@if(Auth::user()->type == 'seller')
-                                                                  <li><a href="{{ route('orders.status', ['id'=> $order->id]) }}"><em
-                                                                              class="icon ni ni-eye"></em><span>
-                                                                          Change Status
-                                                                    </span></a>
-                                                                  </li>
-                                                              	@endif
+                                                                @if (Auth::user()->type == 'seller')
+                                                                    <li><a
+                                                                            href="{{ route('orders.status', ['id' => $order->id]) }}"><em
+                                                                                class="icon ni ni-eye"></em><span>
+                                                                                Change Status
+                                                                            </span></a>
+                                                                    </li>
+                                                                @endif
                                                             </ul>
                                                         </div>
                                                     </div>
