@@ -74,12 +74,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="dropdown-content dropdown-content-x-lg py-3 border-bottom border-light">
-                                <ul class="link-list">
-                                    <li><a href="profile.html"><em class="icon ni ni-user"></em>
-                                            <span>My Profile</span></a></li>
-                                </ul>
-                            </div>
                             <div class="dropdown-content dropdown-content-x-lg py-3">
                                 <ul class="link-list">
                                     <li>
