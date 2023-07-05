@@ -42,6 +42,9 @@
                                         <th class="tb-col"><span class="overline-title">
                                                 User Contact
                                             </span></th>
+                                        <th class="tb-col"><span class="overline-title">
+                                                Status
+                                            </span></th>
                                         <th class="tb-col tb-col-md"><span class="overline-title">Created At</span></th>
                                         <th class="tb-col tb-col-end" data-sortable="false"><span
                                                 class="overline-title">action</span></th>
