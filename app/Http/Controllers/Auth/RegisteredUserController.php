@@ -65,7 +65,7 @@ class RegisteredUserController extends Controller
 
         $user->save();
 
-        return redirect()->route('users.index');
+        return view('backend.users.index');
 
     }
 
