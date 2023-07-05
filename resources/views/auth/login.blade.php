@@ -294,10 +294,6 @@
                         <input type="password" name="password" id="password" class="input-field"
                             placeholder="Password">
                     </div>
-                    <div class="input-control">
-                        <a href="#" class="text text-links">Forgot Password</a>
-                        <input type="submit" name="submit" class="input-submit" value="Sign In">
-                    </div>
                 </form>
                 <hr>
                 <div class="w-full">

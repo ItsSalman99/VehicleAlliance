@@ -5,10 +5,10 @@ Hello, dear {{ $data['name'] }}! We recieved your order of follwing details.
 
 Here are the details of your order:
 
-| Product       | Quantity  | Price      |
-|:-------------:|:---------:|:----------:|
+| Product         | Price      |
+|:-------------:|:------------:|
 @foreach ($data['order_items'] as $item)
-| {{ $item->product->name }} | {{ $item->quantity }} | ${{ $item->price }} |
+| {{ $item->product->name }} | ${{ $item->price }} |
 @endforeach
 
 Thanks,<br>
