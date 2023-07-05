@@ -1,5 +1,5 @@
 @component('mail::message')
-# {{ $dat['title'] }}
+# {{ $data['title'] }}
 
 Hello, dear {{ $data['name'] }}! We recieved your order of follwing details.
 
