@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function getAll()
     {
-        $products = Product::all();
+        $products = Product::where('in_stock', 1)->get();
 
         return response()->json([
             'status' => true,
