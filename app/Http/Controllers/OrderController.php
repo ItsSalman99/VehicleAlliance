@@ -6,6 +6,9 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Alert;
+use App\Mail\OrderEmail;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -30,7 +33,7 @@ class OrderController extends Controller
   	public function changeStatus($id)
     {
         $order = Order::where('id', $id)->first();
-      
+
       	if($order->status == 'Pending')
         {
           	$status = 'Accepted';
@@ -53,9 +56,21 @@ class OrderController extends Controller
       		$order->save();
         }
 
+        $user = User::where('id', $order->user_id)->first();
+
+        $data = [
+            'title' => 'Your Order is '. $order->status . ' !',
+            'name' => $user->name,
+            'status' => $order->status,
+            'order_items' => $order->order_items
+        ];
+
+        Mail::to($user->email)->send(new OrderEmail($data));
+
+
       	toast("Order is ". $status . ' !', "success");
-      
+
         return redirect()->back();;
     }
-  
+
 }

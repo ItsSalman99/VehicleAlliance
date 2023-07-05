@@ -1,7 +1,10 @@
 @component('mail::message')
-# Your Order Has Been {{ $data['status'] }}
+# {{ $dat['title'] }}
 
 Hello, dear {{ $data['name'] }}! We recieved your order of follwing details.
+
+Order Status: {{ $data['status'] }}
+
 
 Here are the details of your order:
 

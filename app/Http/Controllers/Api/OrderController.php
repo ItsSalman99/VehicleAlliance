@@ -120,6 +120,7 @@ class OrderController extends Controller
                 }
 
                 $data = [
+                    'title' => 'We recieved your order!!',
                     'name' => $user->name,
                     'status' => $order->status,
                     'order_items' => $order->order_items
