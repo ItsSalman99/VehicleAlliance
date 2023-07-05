@@ -64,7 +64,7 @@
                                                                             href="{{ route('users.delete', ['id' => $user->id]) }}"><em
                                                                                 class="icon ni ni-trash"></em><span>Delete</span></a>
                                                                     </li>
-                                                                    @if ($user->type == 'staff' && $user->type == 'seller')
+                                                                    @if ($user->type == 'staff' || $user->type == 'seller')
                                                                         <li>
                                                                             <button onclick="" type="button"
                                                                                 class="btn btn-primary btn-sm"
