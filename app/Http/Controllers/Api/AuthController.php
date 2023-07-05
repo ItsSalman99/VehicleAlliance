@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\EmailVerification;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\SendEmail;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
@@ -30,6 +32,14 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         $buyer = User::where('email', $request->email)->first();
+
+        if($buyer->email_verified_at == NULL)
+        {
+            return response()->json([
+                'status' => 500,
+                'message' => 'Please verify your email first!',
+            ]);
+        }
 
         $token = Auth::attempt($credentials);
 
@@ -62,7 +72,7 @@ class AuthController extends Controller
             $validate = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users,email',
-              	'phone' => 'required',
+                'phone' => 'required',
                 'password' => 'required',
             ]);
 
@@ -81,10 +91,16 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password),
                 'type' => $request->usertype
             ]);
-		
-          	$user = User::where('id', $user->id)->first();
-          
+
+            $user = User::where('id', $user->id)->first();
+
             // $token = Auth::login($user);
+
+            $data = [
+                'name' => $user->name
+            ];
+
+            Mail::to($user->email)->send(new EmailVerification($data));
 
             return response()->json([
                 'status' => true,
@@ -133,4 +149,17 @@ class AuthController extends Controller
             ]);
         }
     }
+
+    public function verifyAccount($id)
+    {
+        $user = User::where('id', $id)->first();
+
+        $user->email_verified_at = Carbon::now();
+
+        $user->save();
+
+        return view('backend.email-verified')
+
+    }
+
 }

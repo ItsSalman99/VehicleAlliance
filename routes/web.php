@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\PollController;
 use App\Http\Controllers\AppointedServicesController;
 use App\Http\Controllers\DashboardController;
@@ -133,6 +134,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 });
 
+
+Route::get('verified/{id}', [AuthController::class, 'verifyAccount'])->name('verifyAccount');
 Route::get('privacy-policy', [HomeController::class, 'privacy'])->name('privacy');
 Route::get('terms-conditions', [HomeController::class, 'terms'])->name('terms');
 
