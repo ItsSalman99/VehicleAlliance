@@ -37,14 +37,13 @@ class RegisteredUserController extends Controller
     {
         // dd($request->all());
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'email' => ['required', 'string'],
-            'password' => ['required', 'confirmed'],
+            'name' => 'required', 'string', 'max:255',
+            'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
+            'email' => 'required', 'string',
+            'password' => 'required', 'confirmed',
         ]);
 
-        if($validator->fails())
-        {
+        if ($validator->fails()) {
 
             toast($validator->errors()->first(), 'error');
             return redirect()->back()->withInput();
@@ -76,8 +75,5 @@ class RegisteredUserController extends Controller
         $users = User::all();
 
         return view('backend.users.index', compact('users'));
-
-
     }
-
 }
