@@ -167,11 +167,11 @@ class OrderController extends Controller
             ->with('order_items', 'order_items.product')
             ->first();
 
-        if($order->status == 'Cancelled')
+        if($order->status == 'Cancelled' || $order->status == 'Delivered' || $order->status == 'Mark as ready')
         {
             return response()->json([
                 'status' => false,
-                'msg' => 'Order is already cancelled!'
+                'msg' => 'Order is already '. $order->status . '!'
             ]);
         }
         $order->status = 'Cancelled';

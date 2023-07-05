@@ -40,6 +40,7 @@ class StaffServiceAppointmentController extends Controller
             $appointment->status = 'Completed';
         }
 
+        $appointment->save();
         $appointments->save();
 
         toast('Appointment Status Changed!', 'success');
