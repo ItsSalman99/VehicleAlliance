@@ -64,12 +64,16 @@
                                                                             href="{{ route('users.delete', ['id' => $user->id]) }}"><em
                                                                                 class="icon ni ni-trash"></em><span>Delete</span></a>
                                                                     </li>
-                                                                    <li><button onclick="" type="button"
-                                                                            class="btn btn-primary btn-sm"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#assignStaffModal">
-                                                                            Change Password
-                                                                        </button></li>
+                                                                    @if ($user->type == 'staff' && $user->type == 'seller')
+                                                                        <li>
+                                                                            <button onclick="" type="button"
+                                                                                class="btn btn-primary btn-sm"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#assignStaffModal">
+                                                                                Change Password
+                                                                            </button>
+                                                                        </li>
+                                                                    @endif
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -100,7 +104,7 @@
                     <form id="passwordForm" method="POST">
                         @csrf
                         <div>
-                            <input type="text" name="password" required id="">
+                            <input type="text" name="password" required class="form-control" id="">
                         </div>
                 </div>
                 <div class="modal-footer">
