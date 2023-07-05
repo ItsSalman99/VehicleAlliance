@@ -65,7 +65,10 @@ class RegisteredUserController extends Controller
 
         $user->save();
 
-        return view('backend.users.index');
+        $users = User::all();
+
+        return view('backend.users.index', compact('users'));
+
 
     }
 
