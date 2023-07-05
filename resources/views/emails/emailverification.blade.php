@@ -3,7 +3,11 @@
 
     Hello, Dear {{ $data['name'] }}! please verify your account by clicking this buttono.
 
-    @component('mail::button', ['url' => '{{route('verifyAccount', ['id' => $data['id']])}}'])
+    @php
+        $id = $data['id'];
+    @endphp
+
+    @component('mail::button', ['url' => '/verified/' . $id])
         Verify
     @endcomponent
 
