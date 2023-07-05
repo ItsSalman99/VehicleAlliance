@@ -55,4 +55,18 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+    public function changePassword(Request $request, $id)
+    {
+
+        $user = User::where('id', $id)->first();
+
+        $user->password = Hash::make($request->password);
+
+        $user->save();
+
+        return redirect()->back();
+
+    }
+
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\PollController;
 use App\Http\Controllers\AppointedServicesController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EstimationController;
 use App\Http\Controllers\HomeController;
@@ -126,6 +127,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('/bidding/vehicles/update/{id}', [VehicleBiddingController::class, 'update'])->name('biddings.vehicles.update');
     Route::get('/bidding/vehicles/delete/{id}', [VehicleBiddingController::class, 'delete'])->name('biddings.vehicles.delete');
     Route::get('/bidding/vehicles/confirm/{id}', [VehicleBiddingController::class, 'confirmed'])->name('biddings.vehicles.confirm');
+
+    Route::post('/user/change-password/{id}', [RegisteredUserController::class, 'changePassword'])->name('user.change-password');
 
     //ajax
     Route::get('/getAllStaffs', [AppointedServicesController::class, 'getAllStaffs']);

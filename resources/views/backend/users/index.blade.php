@@ -64,9 +64,12 @@
                                                                             href="{{ route('users.delete', ['id' => $user->id]) }}"><em
                                                                                 class="icon ni ni-trash"></em><span>Delete</span></a>
                                                                     </li>
-                                                                    {{-- <li><a href="products.html"><em
-                                                                        class="icon ni ni-eye"></em><span>View
-                                                                            Details</span></a></li> --}}
+                                                                    <li><button onclick="" type="button"
+                                                                            class="btn btn-primary btn-sm"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#assignStaffModal">
+                                                                            Change Password
+                                                                        </button></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -83,4 +86,38 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="assignStaffModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Assign To Staff</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="passwordForm" method="POST">
+                        @csrf
+                        <div>
+                            <input type="text" name="password" required id="">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Change Paassword</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @push('extra-js')
+        <script>
+            function getStaffs(id) {
+                $('#passwordForm').attr('action', '/admin//user/change-password/' + id);
+
+            }
+        </script>
+    @endpush
 @endsection
