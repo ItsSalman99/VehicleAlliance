@@ -95,7 +95,8 @@ class AuthController extends Controller
             // $token = Auth::login($user);
 
             $data = [
-                'name' => $user->name
+                'name' => $user->name,
+                'url' => 'https://vehiclealliance.online/verified' . $user->id
             ];
 
             Mail::to($user->email)->send(new EmailVerification($data));
