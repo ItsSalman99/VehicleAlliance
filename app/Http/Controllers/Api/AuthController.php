@@ -33,17 +33,15 @@ class AuthController extends Controller
 
         $buyer = User::where('email', $request->email)->first();
 
-        if($buyer->email_verified_at == NULL)
-        {
-            return response()->json([
-                'status' => 500,
-                'message' => 'Please verify your email first!',
-            ]);
-        }
-
         $token = Auth::attempt($credentials);
 
         if (!$token || $buyer->type != "buyer") {
+            if ($buyer->email_verified_at == NULL) {
+                return response()->json([
+                    'status' => 500,
+                    'message' => 'Please verify your email first!',
+                ]);
+            }
             return response()->json([
                 'status' => 500,
                 'message' => 'Unauthorized, Please check your credentials.',
@@ -158,8 +156,6 @@ class AuthController extends Controller
 
         $user->save();
 
-        return view('backend.email-verified')
-
+        return view('backend.email-verified');
     }
-
 }
