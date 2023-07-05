@@ -39,6 +39,9 @@
                                         <th class="tb-col"><span class="overline-title">
                                                 Buyer
                                             </span></th>
+                                        <th class="tb-col"><span class="overline-title">
+                                                Buyer Contact
+                                            </span></th>
                                         <th class="tb-col tb-col-md"><span class="overline-title">Created At</span></th>
                                         <th class="tb-col tb-col-md"><span class="overline-title"></span></th>
                                     </tr>
@@ -58,6 +61,9 @@
 
                                             <td class="tb-col"><span class="badge text-bg-success-soft">
                                                     {{ $appointments->appointment->user->name }}
+                                                </span></td>
+                                            <td class="tb-col"><span class="badge text-bg-success-soft">
+                                                    {{ $appointments->appointment->user->phone }}
                                                 </span></td>
                                             <td class="tb-col tb-col-md"><span>
                                                     {{ date('F j Y', strtotime($appointments->created_at)) }}
