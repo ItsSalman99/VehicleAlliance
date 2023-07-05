@@ -54,7 +54,7 @@ class RegisteredUserController extends Controller
         if ($check) {
 
             toast('Email already exists', 'error');
-            return redirect()->back()->withInput();
+            return redirect()->back()->withInput()->withErrors('Email already exists');
         }
 
         $user = User::create([
